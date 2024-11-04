@@ -147,22 +147,22 @@ module.exports = {
   },
 
   homepageMessage: {
-    CREATED: "Carousel created!",
-    NOT_CREATED: "Carousel not created!",
+    CREATED: "Homepage data created!",
+    NOT_CREATED: "Homepage data not created!",
 
-    FETCHED: "Carousel fetched !",
-    NOT_FETCHED: "Carousel not fetched !",
+    FETCHED: "Homepage data fetched !",
+    NOT_FETCHED: "Homepage data not fetched !",
 
-    UPDATED: "Carousel updated!",
-    NOT_UPDATED: "Carousel not updated !",
+    UPDATED: "Homepage data updated!",
+    NOT_UPDATED: "Homepage data not updated !",
 
-    DELETED: "Carousel deleted!",
-    NOT_DELETED: "Carousel not deleted !",
+    DELETED: "Homepage data deleted!",
+    NOT_DELETED: "Homepage data not deleted !",
 
-    ALREADY_EXISTS: "Carousel already exists !",
-    NOT_AVAILABLE: "Carousel not available !",
+    ALREADY_EXISTS: "Homepage data already exists !",
+    NOT_AVAILABLE: "Homepage data not available !",
 
-    INVALID_ID: "Carousel ID is invalid",
+    INVALID_ID: "Homepage data ID is invalid",
   },
 
   subCategoryMessage: {

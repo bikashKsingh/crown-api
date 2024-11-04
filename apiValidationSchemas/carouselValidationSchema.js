@@ -5,9 +5,10 @@ const { customCallback } = require("../helpers/joiHelper");
 module.exports.create = Joi.object({
   title: Joi.string().label("Title"),
   subTitle: Joi.string().label("Sub Title"),
-  description: Joi.string().allow("").label("Description"),
-  usp: Joi.array().items(Joi.object()).allow("").label("USP"),
+  image: Joi.string().label("Image"),
   shortDescription: Joi.string().allow("").label("Short Description"),
+  buttonText: Joi.string().allow("").label("Button Text"),
+  buttonLink: Joi.string().allow("").label("Button Link"),
   status: Joi.boolean().label("Status"),
 });
 
@@ -28,9 +29,10 @@ module.exports.findById = Joi.object({
 module.exports.update = Joi.object({
   title: Joi.string().label("Title"),
   subTitle: Joi.string().label("Sub Title"),
-  description: Joi.string().allow("").label("Description"),
-  usp: Joi.array().items(Joi.object()).allow("").label("USP"),
+  image: Joi.string().label("Image"),
   shortDescription: Joi.string().allow("").label("Short Description"),
+  buttonText: Joi.string().allow("").label("Button Text"),
+  buttonLink: Joi.string().allow("").label("Button Link"),
   status: Joi.boolean().label("Status"),
 });
 

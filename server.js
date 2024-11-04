@@ -47,6 +47,7 @@ app.use("/api/v1/admins", require("./routes/adminRouter"));
 app.use("/api/v1/categories", require("./routes/categoryRouter"));
 
 app.use("/api/v1/carousels", require("./routes/carouselRouter"));
+app.use("/api/v1/homepage", require("./routes/homepageRoutes"));
 
 app.use("/api/v1/subCategories", require("./routes/subCategoryRouter"));
 app.use("/api/v1/newsletters", require("./routes/newsLetterRouter"));

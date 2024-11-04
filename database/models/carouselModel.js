@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 const modelSchema = new mongoose.Schema(
   {
     title: { type: String, trim: true },
-    subtitle: { type: String, trim: true },
+    subTitle: { type: String, trim: true },
     image: { type: String, trim: true },
-    description: { type: String, default: "", trim: true },
+    shortDescription: { type: String, default: "", trim: true },
+    buttonText: { type: String, trim: true },
+    buttonLink: { type: String, trim: true },
+
     status: { type: Boolean, default: true, required: true },
     isDeleted: { type: Boolean, default: false, required: true },
   },

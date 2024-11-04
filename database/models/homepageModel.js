@@ -11,19 +11,19 @@ const modelSchema = new mongoose.Schema(
     aboutusButtonLink: { type: String, trim: true },
 
     // Marketing Section
-    marketingSecTitle: { type: String, trim: true },
-    marketingSecSubTitle: { type: String, trim: true },
-    marketingSecDescription: { type: String, trim: true },
-    marketingSecImage: { type: String, trim: true },
-    marketingSecVideo: { type: String, trim: true },
-    marketingSecButtonText: { type: String, trim: true },
-    marketingSecButtonLink: { type: String, trim: true },
+    marketingTitle: { type: String, trim: true },
+    marketingSubTitle: { type: String, trim: true },
+    marketingDescription: { type: String, trim: true },
+    marketingImage: { type: String, trim: true },
+    marketingVideo: { type: String, trim: true },
+    marketingButtonText: { type: String, trim: true },
+    marketingButtonLink: { type: String, trim: true },
 
     // Featured Section
-    featuredSecTitle: { type: String, trim: true },
-    featuredSecSubTitle: { type: String, trim: true },
-    featuredSecDescription: { type: String, trim: true },
-    featuredSecTabs: [
+    featuredTitle: { type: String, trim: true },
+    featuredSubTitle: { type: String, trim: true },
+    featuredDescription: { type: String, trim: true },
+    featuredTabs: [
       {
         tabTitle: String,
         image: String,
@@ -31,28 +31,25 @@ const modelSchema = new mongoose.Schema(
     ],
 
     // Gallery Section
-    gallerySecTitle: { type: String, trim: true },
-    gallerySecSubTitle: { type: String, trim: true },
-    gallerySecDescription: { type: String, trim: true },
-    gallerySecvideos: [
+    galleryTitle: { type: String, trim: true },
+    gallerySubTitle: { type: String, trim: true },
+    galleryDescription: { type: String, trim: true },
+    galleryVideos: [
       {
         type: String,
       },
     ],
 
     // Blog Section
-    blogSecTitle: { type: String, trim: true },
-    blogSecSubTitle: { type: String, trim: true },
-    blogSecDescription: { type: String, trim: true },
+    blogTitle: { type: String, trim: true },
+    blogSubTitle: { type: String, trim: true },
+    blogDescription: { type: String, trim: true },
 
     // Inquiry Section
-    inquirySecTitle: { type: String, trim: true },
-    inquirySecSubTitle: { type: String, trim: true },
-    inquirySecDescription: { type: String, trim: true },
-    inquirySecImage: { type: String, trim: true },
-
-    status: { type: Boolean, default: true, required: true },
-    isDeleted: { type: Boolean, default: false, required: true },
+    inquiryTitle: { type: String, trim: true },
+    inquirySubTitle: { type: String, trim: true },
+    inquiryDescription: { type: String, trim: true },
+    inquiryImage: { type: String, trim: true },
   },
   {
     timestamps: true,

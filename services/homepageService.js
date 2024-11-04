@@ -1,5 +1,5 @@
 const homepageModel = require("../database/models/homepageModel");
-const { serviceResponse, carouselMessage } = require("../constants/message");
+const { serviceResponse, homepageMessage } = require("../constants/message");
 const dbHelper = require("../helpers/dbHelper");
 const _ = require("lodash");
 const logFile = require("../helpers/logFile");
@@ -13,14 +13,17 @@ module.exports.create = async (serviceData) => {
 
     // already exists
     if (existingData) {
-      const result = await homepageModel.findOneAndUpdate(existingData._id);
+      const result = await homepageModel.findOneAndUpdate(
+        existingData._id,
+        serviceData
+      );
       if (result) {
         response.body = dbHelper.formatMongoData(result);
         response.isOkay = true;
-        response.message = carouselMessage.UPDATED;
+        response.message = homepageMessage.UPDATED;
       } else {
-        response.message = carouselMessage.NOT_UPDATED;
-        response.errors.error = carouselMessage.NOT_UPDATED;
+        response.message = homepageMessage.NOT_UPDATED;
+        response.errors.error = homepageMessage.NOT_UPDATED;
       }
     } else {
       const newData = new homepageModel(serviceData);
@@ -29,10 +32,10 @@ module.exports.create = async (serviceData) => {
       if (result) {
         response.body = dbHelper.formatMongoData(result);
         response.isOkay = true;
-        response.message = carouselMessage.CREATED;
+        response.message = homepageMessage.CREATED;
       } else {
-        response.message = carouselMessage.NOT_CREATED;
-        response.errors.error = carouselMessage.NOT_CREATED;
+        response.message = homepageMessage.NOT_CREATED;
+        response.errors.error = homepageMessage.NOT_CREATED;
       }
     }
   } catch (error) {
@@ -49,11 +52,11 @@ module.exports.findOne = async (serviceData) => {
     const result = await homepageModel.findOne();
     if (result) {
       response.body = dbHelper.formatMongoData(result);
-      response.message = carouselMessage.FETCHED;
+      response.message = homepageMessage.FETCHED;
       response.isOkay = true;
     } else {
-      response.errors.error = carouselMessage.NOT_AVAILABLE;
-      response.message = carouselMessage.NOT_AVAILABLE;
+      response.errors.error = homepageMessage.NOT_AVAILABLE;
+      response.message = homepageMessage.NOT_AVAILABLE;
     }
     return response;
   } catch (error) {
@@ -69,11 +72,11 @@ module.exports.delete = async (serviceData) => {
     const result = await homepageModel.deleteMany();
 
     if (result) {
-      response.message = carouselMessage.DELETED;
+      response.message = homepageMessage.DELETED;
       response.isOkay = true;
     } else {
-      response.message = carouselMessage.NOT_DELETED;
-      response.errors.id = carouselMessage.INVALID_ID;
+      response.message = homepageMessage.NOT_DELETED;
+      response.errors.id = homepageMessage.INVALID_ID;
     }
   } catch (error) {
     logFile.write(`Service : homepageService: delete, Error : ${error}`);

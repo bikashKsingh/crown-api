@@ -64,7 +64,7 @@ module.exports.findAll = async (serviceData) => {
       conditions = {
         $or: [
           { title: { $regex: searchQuery, $options: "i" } },
-          { subtitle: { $regex: searchQuery, $options: "i" } },
+          { subTitle: { $regex: searchQuery, $options: "i" } },
         ],
       };
     }

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const homepageController = require("../controllers/homepageController");
-const carouselValidationSchema = require("../apiValidationSchemas/carouselValidationSchema");
+const homepageValidationSchema = require("../apiValidationSchemas/homepageValidationSchema");
 const joiSchemaValidation = require("../middlewares/joiSchemaValidation");
 const jwtValidation = require("../middlewares/jwtValidation");
 
@@ -8,12 +8,12 @@ const jwtValidation = require("../middlewares/jwtValidation");
 router.post(
   "/",
   jwtValidation.validateAdminToken,
-  joiSchemaValidation.validateBody(carouselValidationSchema.create),
+  joiSchemaValidation.validateBody(homepageValidationSchema.create),
   homepageController.create
 );
 
 // findOne
-router.get("/:id", homepageController.findOne);
+router.get("/", homepageController.findOne);
 
 // delete
 router.delete("/", jwtValidation.validateAdminToken, homepageController.delete);

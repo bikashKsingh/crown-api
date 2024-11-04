@@ -4,8 +4,8 @@ const { customCallback } = require("../helpers/joiHelper");
 // create
 module.exports.create = Joi.object({
   // Aboutus Section
-  aboutusTitle: Joi.string().label("Aboutus Title"),
-  aboutusSubTitle: Joi.string().label("Aboutus Sub Title"),
+  aboutusTitle: Joi.string().allow("").label("Aboutus Title"),
+  aboutusSubTitle: Joi.string().allow("").label("Aboutus Sub Title"),
   aboutusImage: Joi.string().allow("").label("Aboutus Image"),
   aboutusVideo: Joi.string().allow("").label("Aboutus Video"),
   aboutusDescription: Joi.string().allow("").label("Aboutus Description"),
@@ -13,46 +13,48 @@ module.exports.create = Joi.object({
   aboutusButtonLink: Joi.string().allow("").label("Aboutus Button Link"),
 
   // Marketing Title
-  marketingSecTitle: Joi.string().label("Marketing Section Title"),
-  marketingSecSubTitle: Joi.string().label("Marketing Section Sub Title"),
-  marketingSecDescription: Joi.string()
+  marketingTitle: Joi.string().allow("").label("Marketing Section Title"),
+  marketingSubTitle: Joi.string()
+    .allow("")
+    .label("Marketing Section Sub Title"),
+  marketingDescription: Joi.string()
     .allow("")
     .label("Marketing Section Description"),
-  marketingSecImage: Joi.string().allow("").label("Marketing Section Image"),
-  marketingSecVideo: Joi.string().allow("").label("Marketing Section Video"),
-  marketingSecButtonText: Joi.string()
+  marketingImage: Joi.string().allow("").label("Marketing Section Image"),
+  marketingVideo: Joi.string().allow("").label("Marketing Section Video"),
+  marketingButtonText: Joi.string()
     .allow("")
     .label("Marketing Section Button Text"),
-  marketingSecButtonLink: Joi.string()
+  marketingButtonLink: Joi.string()
     .allow("")
     .label("Marketing Section Button Link"),
 
   // Featured Section
-  featuredSecTitle: Joi.string().label("Featured Section Title"),
-  featuredSecSubTitle: Joi.string().label("Featured Section Sub Title"),
-  featuredSecDescription: Joi.string()
+  featuredTitle: Joi.string().allow("").label("Featured Section Title"),
+  featuredSubTitle: Joi.string().allow("").label("Featured Section Sub Title"),
+  featuredDescription: Joi.string()
     .allow("")
     .label("Featured Section Description"),
-  featuredSecTabs: Joi.array(),
+  featuredTabs: Joi.array(),
 
   // Gallery Section
-  gallerySecTitle: Joi.string().label("Gallery Section Title"),
-  gallerySecSubTitle: Joi.string().label("Gallery Section Sub Title"),
-  gallerySecDescription: Joi.string()
+  galleryTitle: Joi.string().allow("").label("Gallery Section Title"),
+  gallerySubTitle: Joi.string().allow("").label("Gallery Section Sub Title"),
+  galleryDescription: Joi.string()
     .allow("")
     .label("Gallery Section Description"),
-  gallerySecvideos: Joi.array(),
+  galleryVideos: Joi.array(),
 
   // Blog Section
-  blogSecTitle: Joi.string().label("Blog Section Title"),
-  blogSecSubTitle: Joi.string().label("Blog Section Sub Title"),
-  blogSecDescription: Joi.string().allow("").label("Blog Section Description"),
+  blogTitle: Joi.string().allow("").label("Blog Section Title"),
+  blogSubTitle: Joi.string().allow("").label("Blog Section Sub Title"),
+  blogDescription: Joi.string().allow("").label("Blog Section Description"),
 
   // Inquiry Section
-  inquirySecTitle: Joi.string().label("Inquiry Section Title"),
-  inquirySecSubTitle: Joi.string().label("Inquiry Section Sub Title"),
-  inquirySecDescription: Joi.string()
+  inquiryTitle: Joi.string().allow("").label("Inquiry Section Title"),
+  inquirySubTitle: Joi.string().allow("").label("Inquiry Section Sub Title"),
+  inquiryDescription: Joi.string()
     .allow("")
     .label("Inquiry Section Description"),
-  inquirySecImage: Joi.string().allow("").label("Inquiry Section Image"),
+  inquiryImage: Joi.string().allow("").label("Inquiry Section Image"),
 });
