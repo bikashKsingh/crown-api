@@ -16,7 +16,7 @@ router.post(
 router.get(
   "/:id",
   joiSchemaValidation.validateParams(subCategoryValidationSchema.findById),
-  jwtValidation.validateAdminToken,
+  // jwtValidation.validateAdminToken,
   subCategoryController.findById
 );
 
@@ -24,7 +24,7 @@ router.get(
 router.get(
   "/",
   joiSchemaValidation.validateQuery(subCategoryValidationSchema.findAll),
-  jwtValidation.validateAdminToken,
+  // jwtValidation.validateAdminToken,
   subCategoryController.findAll
 );
 
