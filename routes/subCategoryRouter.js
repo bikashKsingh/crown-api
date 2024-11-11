@@ -23,7 +23,7 @@ router.get(
 // findAll
 router.get(
   "/",
-  joiSchemaValidation.validateParams(subCategoryValidationSchema.findAll),
+  joiSchemaValidation.validateQuery(subCategoryValidationSchema.findAll),
   jwtValidation.validateAdminToken,
   subCategoryController.findAll
 );

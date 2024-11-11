@@ -51,32 +51,29 @@ app.use("/api/v1/homepage", require("./routes/homepageRoutes"));
 
 app.use("/api/v1/subCategories", require("./routes/subCategoryRouter"));
 app.use("/api/v1/newsletters", require("./routes/newsLetterRouter"));
-app.use("/api/v1/coupons", require("./routes/couponRouter"));
-app.use("/api/v1/trainers", require("./routes/trainerRouter"));
+
+app.use("/api/v1/inquiries", require("./routes/inquiryRouter"));
+
+// app.use("/api/v1/coupons", require("./routes/couponRouter"));
+// app.use("/api/v1/trainers", require("./routes/trainerRouter"));
 app.use("/api/v1/users", require("./routes/userRouter"));
-app.use("/api/v1/plans", require("./routes/planRouter"));
+// app.use("/api/v1/plans", require("./routes/planRouter"));
 
 // ----------- Settings -----------
 app.use("/api/v1/paymentSettings", require("./routes/paymentSettingRouter"));
 // ----------- End Settings -----------
 
-app.use(
-  "/api/v1/programRequirements",
-  require("./routes/programRequirementRouter")
-);
-app.use("/api/v1/programs", require("./routes/programRouter"));
-app.use("/api/v1/programPlans", require("./routes/programPlanRouter"));
-app.use("/api/v1/bookings", require("./routes/bookingRouter"));
+app.use("/api/v1/types", require("./routes/typeRouter"));
+app.use("/api/v1/sizes", require("./routes/sizeRouter"));
+app.use("/api/v1/products", require("./routes/productRouter"));
+app.use("/api/v1/orders", require("./routes/orderRouter"));
 
-app.use("/api/v1/trainerInterests", require("./routes/trainerInterestRouter"));
-app.use(
-  "/api/v1/trainerDesignations",
-  require("./routes/trainerDesignationRouter")
-);
-app.use(
-  "/api/v1/trainerSpecialities",
-  require("./routes/trainerSpecialityRouter")
-);
+// app.use("/api/v1/programPlans", require("./routes/programPlanRouter"));
+// app.use(
+//   "/api/v1/trainerDesignations",
+//   require("./routes/trainerDesignationRouter")
+// );
+
 app.use("/api/v1/trainerLevels", require("./routes/trainerLevelRouter"));
 app.use("/api/v1/documentFormats", require("./routes/documentFormatRouter"));
 app.use("/api/v1/kycDocuments", require("./routes/kycDocumentRouter"));

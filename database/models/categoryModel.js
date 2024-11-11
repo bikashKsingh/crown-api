@@ -11,6 +11,11 @@ const modelSchema = new mongoose.Schema(
     metaTitle: { type: String, default: "", trim: true },
     metaDescription: { type: String, default: "", trim: true },
     metaKeywords: { type: String, default: "", trim: true },
+
+    listingTitle: { type: String, default: "", trim: true },
+    listingImage: { type: String, trim: true, default: "" },
+    listingDescription: { type: String, default: "", trim: true },
+
     status: { type: Boolean, default: true, required: true },
     isDeleted: { type: Boolean, default: false, required: true },
   },

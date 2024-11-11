@@ -13,6 +13,11 @@ module.exports.create = Joi.object({
   metaTitle: Joi.string().allow("").label("Meta Title"),
   metaDescription: Joi.string().allow("").label("Meta Descriptions"),
   metaKeywords: Joi.string().allow("").label("Meta Keywords"),
+
+  listingTitle: Joi.string().allow("").label("Listing Title"),
+  listingImage: Joi.string().allow("").label("Listing Image"),
+  listingDescription: Joi.string().allow("").label("Listing Descriptions"),
+
   status: Joi.boolean().label("Status"),
 });
 
@@ -41,6 +46,11 @@ module.exports.update = Joi.object({
   metaTitle: Joi.string().allow("").label("Meta Title"),
   metaDescription: Joi.string().allow("").label("Meta Descriptions"),
   metaKeywords: Joi.string().allow("").label("Meta Keywords"),
+
+  listingTitle: Joi.string().allow("").label("Listing Title"),
+  listingImage: Joi.string().allow("").label("Listing Image"),
+  listingDescription: Joi.string().allow("").label("Listing Descriptions"),
+
   status: Joi.boolean().label("Status"),
 });
 

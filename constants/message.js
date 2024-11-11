@@ -241,45 +241,45 @@ module.exports = {
     INVALID_ID: "Plan ID is invalid",
   },
 
-  bookingMessage: {
-    CREATED: "Plan added!",
-    NOT_CREATED: "Plan not added!",
+  orderMessage: {
+    CREATED: "Order added!",
+    NOT_CREATED: "Order not added!",
 
-    FETCHED: "Plan fetched !",
-    NOT_FETCHED: "Plan not fetched !",
+    FETCHED: "Order fetched !",
+    NOT_FETCHED: "Order not fetched !",
 
-    UPDATED: "Plan updated!",
-    NOT_UPDATED: "Plan not updated !",
+    UPDATED: "Order updated!",
+    NOT_UPDATED: "Order not updated !",
 
-    DELETED: "Plan deleted!",
-    NOT_DELETED: "Plan not deleted !",
+    DELETED: "Order deleted!",
+    NOT_DELETED: "Order not deleted !",
 
-    ALREADY_EXISTS: "Plan already exists !",
-    NOT_AVAILABLE: "Plan not available !",
+    ALREADY_EXISTS: "Order already exists !",
+    NOT_AVAILABLE: "Order not available !",
 
-    INVALID_ID: "Plan ID is invalid",
+    INVALID_ID: "Order ID is invalid",
 
-    BOOKED: "Plan booked!",
-    NOT_BOOKED: "Plan not booked!",
+    BOOKED: "Order booked!",
+    NOT_BOOKED: "Order not booked!",
   },
 
-  programMessage: {
-    CREATED: "Program created!",
-    NOT_CREATED: "Program not created!",
+  productMessage: {
+    CREATED: "Product created!",
+    NOT_CREATED: "Product not created!",
 
-    FETCHED: "Program fetched !",
-    NOT_FETCHED: "Program not fetched !",
+    FETCHED: "Product fetched !",
+    NOT_FETCHED: "Product not fetched !",
 
-    UPDATED: "Program updated!",
-    NOT_UPDATED: "Program not updated !",
+    UPDATED: "Product updated!",
+    NOT_UPDATED: "Product not updated !",
 
-    DELETED: "Program deleted!",
-    NOT_DELETED: "Program not deleted !",
+    DELETED: "Product deleted!",
+    NOT_DELETED: "Product not deleted !",
 
-    ALREADY_EXISTS: "Program already exists !",
-    NOT_AVAILABLE: "Program not available !",
+    ALREADY_EXISTS: "Product already exists !",
+    NOT_AVAILABLE: "Product not available !",
 
-    INVALID_ID: "Program ID is invalid",
+    INVALID_ID: "Product ID is invalid",
   },
 
   newsletterMessage: {
@@ -299,6 +299,25 @@ module.exports = {
     NOT_AVAILABLE: "Newsletter email not available !",
 
     INVALID_ID: "Newsletter ID is invalid",
+  },
+
+  inquiryMessage: {
+    CREATED: "Inquiry created!",
+    NOT_CREATED: "Failed to create inquiry.",
+
+    FETCHED: "Inquiry fetched!",
+    NOT_FETCHED: "Inquiry not fetched !",
+
+    UPDATED: "Inquiry updated!",
+    NOT_UPDATED: "Inquiry not updated !",
+
+    DELETED: "Inquiry deleted!",
+    NOT_DELETED: "Inquiry not deleted !",
+
+    ALREADY_EXISTS: "Inquiry already exists !",
+    NOT_AVAILABLE: "Inquiry not available !",
+
+    INVALID_ID: "Inquiry ID is invalid",
   },
 
   documentFormatMessage: {
@@ -339,23 +358,23 @@ module.exports = {
     INVALID_ID: "KYC document ID is invalid",
   },
 
-  trainerInterestMessage: {
-    CREATED: "Trainer interest created!",
-    NOT_CREATED: "Trainer interest not created!",
+  sizeMessage: {
+    CREATED: "Size created!",
+    NOT_CREATED: "Size not created!",
 
-    FETCHED: "Trainer interest fetched !",
-    NOT_FETCHED: "Trainer interest not fetched !",
+    FETCHED: "Size fetched !",
+    NOT_FETCHED: "Size not fetched !",
 
-    UPDATED: "Trainer interest updated!",
-    NOT_UPDATED: "Trainer interest not updated !",
+    UPDATED: "Size updated!",
+    NOT_UPDATED: "Size not updated !",
 
-    DELETED: "Trainer interest deleted!",
-    NOT_DELETED: "Trainer interest not deleted !",
+    DELETED: "Size deleted!",
+    NOT_DELETED: "Size not deleted !",
 
-    ALREADY_EXISTS: "Trainer interest already exists !",
-    NOT_AVAILABLE: "Trainer interest not available !",
+    ALREADY_EXISTS: "Size already exists !",
+    NOT_AVAILABLE: "Size not available !",
 
-    INVALID_ID: "Trainer interest ID is invalid",
+    INVALID_ID: "Size ID is invalid",
   },
 
   trainerLevelMessage: {
@@ -396,25 +415,6 @@ module.exports = {
     INVALID_ID: "Trainer designation ID is invalid",
   },
 
-  trainerSpecialityMessage: {
-    CREATED: "Trainer speciality created!",
-    NOT_CREATED: "Trainer speciality not created!",
-
-    FETCHED: "Trainer speciality fetched !",
-    NOT_FETCHED: "Trainer speciality not fetched !",
-
-    UPDATED: "Trainer speciality updated!",
-    NOT_UPDATED: "Trainer speciality not updated !",
-
-    DELETED: "Trainer speciality deleted!",
-    NOT_DELETED: "Trainer speciality not deleted !",
-
-    ALREADY_EXISTS: "Trainer speciality already exists !",
-    NOT_AVAILABLE: "Trainer speciality not available !",
-
-    INVALID_ID: "Trainer speciality ID is invalid",
-  },
-
   paymentSettingMessage: {
     CREATED: "Payment created!",
     NOT_CREATED: "Payment not created!",
@@ -434,23 +434,23 @@ module.exports = {
     INVALID_ID: "Payment ID is invalid",
   },
 
-  programRequirementMessage: {
-    CREATED: "Trainer speciality created!",
-    NOT_CREATED: "Trainer speciality not created!",
+  typeMessage: {
+    CREATED: "Type created!",
+    NOT_CREATED: "Type not created!",
 
-    FETCHED: "Trainer speciality fetched !",
-    NOT_FETCHED: "Trainer speciality not fetched !",
+    FETCHED: "Type fetched !",
+    NOT_FETCHED: "Type not fetched !",
 
-    UPDATED: "Trainer speciality updated!",
-    NOT_UPDATED: "Trainer speciality not updated !",
+    UPDATED: "Type updated!",
+    NOT_UPDATED: "Type not updated !",
 
-    DELETED: "Trainer speciality deleted!",
-    NOT_DELETED: "Trainer speciality not deleted !",
+    DELETED: "Type deleted!",
+    NOT_DELETED: "Type not deleted !",
 
-    ALREADY_EXISTS: "Trainer speciality already exists !",
-    NOT_AVAILABLE: "Trainer speciality not available !",
+    ALREADY_EXISTS: "Type already exists !",
+    NOT_AVAILABLE: "Type not available !",
 
-    INVALID_ID: "Trainer speciality ID is invalid",
+    INVALID_ID: "Type ID is invalid",
   },
 
   couponMessage: {
