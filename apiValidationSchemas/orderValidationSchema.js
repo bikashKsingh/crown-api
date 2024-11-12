@@ -1,5 +1,6 @@
 const Joi = require("joi");
 const { customCallback } = require("../helpers/joiHelper");
+const { ORDER_STATUS } = require("../constants/orderStatus");
 
 // create
 module.exports.create = Joi.object({
@@ -40,7 +41,20 @@ module.exports.findById = Joi.object({
 });
 
 // update
-module.exports.update = Joi.object({});
+module.exports.update = Joi.object({
+  name: Joi.string().required().label("Name"),
+  mobile: Joi.string().required().label("Mobile"),
+  email: Joi.string().required().label("Email"),
+
+  // Shipping Address
+  address: Joi.string().required().label("Address"),
+  locality: Joi.string().required().allow("").label("Locality"),
+  city: Joi.string().required().allow("").label("City"),
+  state: Joi.string().required().allow("").label("State"),
+  country: Joi.string().required().allow("").label("Country"),
+  pincode: Joi.string().required().allow("").label("Pincode"),
+  orderStatus: Joi.string().valid(...ORDER_STATUS, ""),
+});
 
 // deleteMultiple
 module.exports.deleteMultiple = Joi.object({

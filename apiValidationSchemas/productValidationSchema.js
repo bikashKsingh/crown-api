@@ -37,7 +37,10 @@ module.exports.findAll = Joi.object({
   limit: Joi.string(),
   searchQuery: Joi.string(),
   category: Joi.string(),
+  subCategory: Joi.string(),
   type: Joi.string(),
+  sizes: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
+  size: Joi.string(),
   status: Joi.string(),
 });
 

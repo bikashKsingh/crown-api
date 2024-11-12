@@ -76,6 +76,10 @@ module.exports.findAll = async (serviceData) => {
       searchQuery,
       status = true,
       isDeleted = false,
+      category,
+      subCategory,
+      type,
+      sizes = [],
     } = serviceData;
 
     // SearchQuery
@@ -95,6 +99,14 @@ module.exports.findAll = async (serviceData) => {
       conditions.status = status;
     }
 
+    if (category) conditions.category = category;
+    if (subCategory) conditions.subCategory = subCategory;
+    if (type) conditions.type = type;
+
+    if (sizes.length) {
+      conditions.sizes = { $in: sizes };
+    }
+
     // DeletedAccount
     conditions.isDeleted = isDeleted;
 
@@ -106,6 +118,7 @@ module.exports.findAll = async (serviceData) => {
     const result = await productModel
       .find(conditions)
       .populate({ path: "category" })
+      .populate({ path: "subCategory" })
       .populate({ path: "type" })
       .populate({ path: "sizes" })
       .skip((parseInt(page) - 1) * parseInt(limit))

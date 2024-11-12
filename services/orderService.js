@@ -30,6 +30,7 @@ module.exports.create = async (serviceData) => {
         sizes: productDetails.sizes,
         salePrice: productDetails.salePrice,
         mrp: productDetails.mrp,
+        qty: item.qty,
         finish: productDetails.finish,
         decorName: productDetails.decorName,
         decorNumber: productDetails.decorNumber,

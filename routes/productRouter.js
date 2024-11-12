@@ -23,7 +23,7 @@ router.get(
 // findAll
 router.get(
   "/",
-  joiSchemaValidation.validateParams(productValidationSchema.findAll),
+  joiSchemaValidation.validateQuery(productValidationSchema.findAll),
   // jwtValidation.validateAdminToken,
   productController.findAll
 );
