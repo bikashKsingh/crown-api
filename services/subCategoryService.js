@@ -72,6 +72,7 @@ module.exports.findAll = async (serviceData) => {
       page = 1,
       searchQuery,
       category,
+      categories = [],
       status = true,
       isDeleted = false,
     } = serviceData;
@@ -94,9 +95,15 @@ module.exports.findAll = async (serviceData) => {
     }
 
     if (category) conditions.category = category;
+    if (categories.length)
+      conditions.category = {
+        $in: categories,
+      };
 
     // DeletedAccount
     conditions.isDeleted = isDeleted;
+
+    console.log(conditions);
 
     // count record
     const totalRecords = await subCategoryModel.countDocuments(conditions);

@@ -3,14 +3,18 @@ const modelSchema = new mongoose.Schema(
   {
     name: { type: String, trim: true, required: true },
     slug: { type: String, unique: true, required: true, trim: true },
-    category: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "category",
-    },
-    subCategory: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "subCategory",
-    },
+    categories: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "category",
+      },
+    ],
+    subCategories: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "subCategory",
+      },
+    ],
     type: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "type",

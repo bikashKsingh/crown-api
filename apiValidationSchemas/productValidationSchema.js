@@ -5,8 +5,11 @@ const { customCallback } = require("../helpers/joiHelper");
 module.exports.create = Joi.object({
   name: Joi.string().required().label("Name"),
   slug: Joi.string().required().label("Slug"),
-  category: Joi.string().required().label("Category"),
-  subCategory: Joi.string().required().label("Sub Category"),
+  categories: Joi.array().items(Joi.string()).required().label("Categories"),
+  subCategories: Joi.array()
+    .items(Joi.string())
+    .required()
+    .label("Sub Categories"),
   type: Joi.string().label("Type"),
   sizes: Joi.array().label("Sizes"),
 
@@ -38,6 +41,10 @@ module.exports.findAll = Joi.object({
   searchQuery: Joi.string(),
   category: Joi.string(),
   subCategory: Joi.string(),
+
+  categories: Joi.array(),
+  subCategories: Joi.array(),
+
   type: Joi.string(),
   sizes: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
   size: Joi.string(),
@@ -53,8 +60,11 @@ module.exports.findById = Joi.object({
 module.exports.update = Joi.object({
   name: Joi.string().required().label("Name"),
   slug: Joi.string().required().label("Slug"),
-  category: Joi.string().required().label("Category"),
-  subCategory: Joi.string().required().label("Sub Category"),
+  categories: Joi.array().items(Joi.string()).required().label("Categories"),
+  subCategories: Joi.array()
+    .items(Joi.string())
+    .required()
+    .label("Sub Categories"),
   type: Joi.string().label("Type"),
   sizes: Joi.array().label("Sizes"),
 

@@ -46,8 +46,8 @@ module.exports.findById = async (serviceData) => {
   try {
     const result = await productModel
       .findById({ _id: serviceData.id })
-      .populate({ path: "category" })
-      .populate({ path: "subCategory" })
+      .populate({ path: "categories" })
+      .populate({ path: "subCategories" })
       .populate({ path: "type" })
       .populate({ path: "sizes" });
     if (result) {
@@ -78,6 +78,8 @@ module.exports.findAll = async (serviceData) => {
       isDeleted = false,
       category,
       subCategory,
+      categories = [],
+      subCategories = [],
       type,
       sizes = [],
     } = serviceData;
@@ -99,8 +101,21 @@ module.exports.findAll = async (serviceData) => {
       conditions.status = status;
     }
 
-    if (category) conditions.category = category;
-    if (subCategory) conditions.subCategory = subCategory;
+    if (category) conditions.categories = category;
+    if (subCategory) conditions.subCategories = subCategory;
+
+    if (categories?.length) {
+      conditions.categories = {
+        $in: categories,
+      };
+    }
+
+    if (subCategories.length) {
+      conditions.subCategories = {
+        $in: subCategories,
+      };
+    }
+
     if (type) conditions.type = type;
 
     if (sizes.length) {
@@ -117,8 +132,8 @@ module.exports.findAll = async (serviceData) => {
 
     const result = await productModel
       .find(conditions)
-      .populate({ path: "category" })
-      .populate({ path: "subCategory" })
+      .populate({ path: "categories" })
+      .populate({ path: "subCategories" })
       .populate({ path: "type" })
       .populate({ path: "sizes" })
       .skip((parseInt(page) - 1) * parseInt(limit))

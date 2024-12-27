@@ -13,6 +13,7 @@ module.exports.create = Joi.object({
   aboutusButtonLink: Joi.string().allow("").label("Aboutus Button Link"),
 
   // Marketing Title
+
   marketingTitle: Joi.string().allow("").label("Marketing Section Title"),
   marketingSubTitle: Joi.string()
     .allow("")
