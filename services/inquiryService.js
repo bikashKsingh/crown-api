@@ -30,7 +30,9 @@ module.exports.create = async (serviceData) => {
 module.exports.findById = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
-    const result = await inquiryModel.findById({ _id: serviceData.id });
+    const result = await inquiryModel
+      .findById({ _id: serviceData.id })
+      .populate("product");
     if (result) {
       response.body = dbHelper.formatMongoData(result);
       response.message = inquiryMessage.FETCHED;
@@ -56,6 +58,7 @@ module.exports.findAll = async (serviceData) => {
       page = 1,
       searchQuery,
       inquiryStatus = "ALL",
+      inquiryType = "ALL",
       isDeleted = false,
     } = serviceData;
 
@@ -73,6 +76,13 @@ module.exports.findAll = async (serviceData) => {
       conditions.inquiryStatus = inquiryStatus;
     }
 
+    // subsinquiryType
+    if (inquiryType == "ALL") {
+      delete conditions.inquiryType;
+    } else {
+      conditions.inquiryType = inquiryType;
+    }
+
     // DeletedAccount
     conditions.isDeleted = isDeleted;
 
@@ -83,6 +93,7 @@ module.exports.findAll = async (serviceData) => {
 
     const result = await inquiryModel
       .find(conditions)
+      .populate("product")
       .skip((parseInt(page) - 1) * parseInt(limit))
       .sort({ updatedAt: -1 })
       .limit(parseInt(limit));

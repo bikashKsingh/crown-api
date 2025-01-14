@@ -2,7 +2,13 @@ const mongoose = require("mongoose");
 
 const modelSchema = new mongoose.Schema(
   {
-    title: {
+    shortName: {
+      type: String,
+      trim: true,
+      unique: true,
+    },
+
+    fullName: {
       type: String,
       trim: true,
       unique: true,
@@ -31,4 +37,4 @@ const modelSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("type", modelSchema);
+module.exports = mongoose.model("finish", modelSchema);

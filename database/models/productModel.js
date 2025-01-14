@@ -9,16 +9,19 @@ const modelSchema = new mongoose.Schema(
         ref: "category",
       },
     ],
+
     subCategories: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "subCategory",
       },
     ],
-    type: {
+
+    decorSeries: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "type",
+      ref: "decorSeries",
     },
+
     sizes: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -31,15 +34,20 @@ const modelSchema = new mongoose.Schema(
 
     finish: { type: String, trim: true },
     decorName: { type: String, trim: true },
-    decorNumber: { type: String, trim: true },
+    decorNumber: { type: String, trim: true, unique: true },
     sku: { type: String, trim: true },
 
-    defaultImage: { type: String, trim: true },
+    a4Image: { type: String, trim: true },
+    fullSheetImage: { type: String, trim: true },
+    highResolutionImage: { type: String, trim: true },
+
     defaultVideo: { type: String, trim: true },
     images: [{ type: String, trim: true }],
 
     descriptions: { type: String, trim: true },
     shortDescription: { type: String, trim: true },
+
+    ralNumber: { type: String, trim: true },
 
     metaTitle: { type: String, default: "", trim: true },
     metaDescription: { type: String, default: "", trim: true },

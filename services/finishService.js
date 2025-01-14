@@ -1,5 +1,5 @@
-const subCategoryModel = require("../database/models/subCategoryModel");
-const { serviceResponse, subCategoryMessage } = require("../constants/message");
+const finishModel = require("../database/models/finishModel");
+const { serviceResponse, finishMessage } = require("../constants/message");
 const dbHelper = require("../helpers/dbHelper");
 const _ = require("lodash");
 const logFile = require("../helpers/logFile");
@@ -8,33 +8,33 @@ const logFile = require("../helpers/logFile");
 module.exports.create = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
-    // Check name is already exist or not
-    const isExist = await subCategoryModel.findOne({
-      name: serviceData.name,
+    // Check shortName is already exist or not
+    const isExist = await finishModel.findOne({
+      shortName: serviceData.shortName,
     });
 
     // already exists
     if (isExist) {
       response.errors = {
-        name: subCategoryMessage.ALREADY_EXISTS,
+        shortName: finishMessage.ALREADY_EXISTS,
       };
-      response.message = subCategoryMessage.ALREADY_EXISTS;
+      response.message = finishMessage.ALREADY_EXISTS;
       return response;
     }
 
-    const newData = new subCategoryModel(serviceData);
+    const newData = new finishModel(serviceData);
     const result = await newData.save();
 
     if (result) {
       response.body = dbHelper.formatMongoData(result);
       response.isOkay = true;
-      response.message = subCategoryMessage.CREATED;
+      response.message = finishMessage.CREATED;
     } else {
-      response.message = subCategoryMessage.NOT_CREATED;
-      response.errors.error = subCategoryMessage.NOT_CREATED;
+      response.message = finishMessage.NOT_CREATED;
+      response.errors.error = finishMessage.NOT_CREATED;
     }
   } catch (error) {
-    logFile.write(`Service : subCategoryService: create, Error : ${error}`);
+    logFile.write(`Service : finishService: create, Error : ${error}`);
     throw new Error(error.message);
   }
   return response;
@@ -44,20 +44,20 @@ module.exports.create = async (serviceData) => {
 module.exports.findById = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
-    const result = await subCategoryModel
-      .findById({ _id: serviceData.id })
-      .populate({ path: "categories" });
+    const result = await finishModel.findById({
+      _id: serviceData.id,
+    });
     if (result) {
       response.body = dbHelper.formatMongoData(result);
-      response.message = subCategoryMessage.FETCHED;
+      response.message = finishMessage.FETCHED;
       response.isOkay = true;
     } else {
-      response.errors.error = subCategoryMessage.NOT_AVAILABLE;
-      response.message = subCategoryMessage.NOT_AVAILABLE;
+      response.errors.id = finishMessage.NOT_AVAILABLE;
+      response.message = finishMessage.NOT_AVAILABLE;
     }
     return response;
   } catch (error) {
-    logFile.write(`Service : subCategoryService: findById, Error : ${error}`);
+    logFile.write(`Service : finishService: findById, Error : ${error}`);
     throw new Error(error);
   }
 };
@@ -71,46 +71,34 @@ module.exports.findAll = async (serviceData) => {
       limit = 10,
       page = 1,
       searchQuery,
-      category,
-      categories = [],
-      status = true,
+      status = "ALL",
       isDeleted = false,
     } = serviceData;
 
     // SearchQuery
     if (searchQuery) {
       conditions = {
-        $or: [
-          { name: { $regex: searchQuery, $options: "i" } },
-          { slug: { $regex: searchQuery, $options: "i" } },
-        ],
+        $or: [{ title: { $regex: searchQuery, $options: "i" } }],
       };
     }
 
-    // Status
-    if (status == "All") {
+    // status
+    if (status == "ALL") {
       delete conditions.status;
     } else {
       conditions.status = status;
     }
 
-    if (category) conditions.categories = category;
-    if (categories.length)
-      conditions.categories = {
-        $in: categories,
-      };
-
     // DeletedAccount
     conditions.isDeleted = isDeleted;
 
     // count record
-    const totalRecords = await subCategoryModel.countDocuments(conditions);
+    const totalRecords = await finishModel.countDocuments(conditions);
     // Calculate the total number of pages
     const totalPages = Math.ceil(totalRecords / parseInt(limit));
 
-    const result = await subCategoryModel
+    const result = await finishModel
       .find(conditions)
-      .populate({ path: "categories" })
       .skip((parseInt(page) - 1) * parseInt(limit))
       .sort({ updatedAt: -1 })
       .limit(parseInt(limit));
@@ -121,12 +109,12 @@ module.exports.findAll = async (serviceData) => {
       response.page = parseInt(page);
       response.totalPages = totalPages;
       response.totalRecords = totalRecords;
-      response.message = subCategoryMessage.FETCHED;
+      response.message = finishMessage.FETCHED;
     } else {
-      response.message = subCategoryMessage.NOT_FETCHED;
+      response.message = finishMessage.NOT_FETCHED;
     }
   } catch (error) {
-    logFile.write(`Service : subCategoryService: findAll, Error : ${error}`);
+    logFile.write(`Service : finishService: findAll, Error : ${error}`);
 
     throw new Error(error);
   }
@@ -140,20 +128,20 @@ module.exports.update = async (serviceData) => {
   try {
     const { id, body } = serviceData;
 
-    const result = await subCategoryModel.findByIdAndUpdate(id, body, {
+    const result = await finishModel.findByIdAndUpdate(id, body, {
       new: true,
     });
 
     if (result) {
       response.body = dbHelper.formatMongoData(result);
-      response.message = subCategoryMessage.UPDATED;
+      response.message = finishMessage.UPDATED;
       response.isOkay = true;
     } else {
-      response.message = subCategoryMessage.NOT_UPDATED;
-      response.errors.id = subCategoryMessage.INVALID_ID;
+      response.message = finishMessage.NOT_UPDATED;
+      response.errors.id = finishMessage.INVALID_ID;
     }
   } catch (error) {
-    logFile.write(`Service : subCategoryService: update, Error : ${error}`);
+    logFile.write(`Service : finishService: update, Error : ${error}`);
     throw new Error(error);
   }
   return response;
@@ -164,24 +152,24 @@ module.exports.delete = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
     const { id } = serviceData;
-    // const result = await subCategoryModel.findByIdAndUpdate(id, {
+    // const result = await finishModel.findByIdAndUpdate(id, {
     //   isDeleted: true,
     //   status: false,
     // });
 
-    const result = await subCategoryModel.findByIdAndDelete(id, {
+    const result = await finishModel.findByIdAndDelete(id, {
       new: true,
     });
 
     if (result) {
-      response.message = subCategoryMessage.DELETED;
+      response.message = finishMessage.DELETED;
       response.isOkay = true;
     } else {
-      response.message = subCategoryMessage.NOT_DELETED;
-      response.errors.id = subCategoryMessage.INVALID_ID;
+      response.message = finishMessage.NOT_DELETED;
+      response.errors.id = finishMessage.INVALID_ID;
     }
   } catch (error) {
-    logFile.write(`Service : subCategoryService: delete, Error : ${error}`);
+    logFile.write(`Service : finishService: delete, Error : ${error}`);
     throw new Error(error);
   }
 
@@ -192,28 +180,26 @@ module.exports.delete = async (serviceData) => {
 module.exports.deleteMultiple = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
-    // const result = await subCategoryModel.findByIdAndUpdate(id, {
+    // const result = await finishModel.findByIdAndUpdate(id, {
     //   isDeleted: true,
     //   status: false,
     // });
 
     // console.log(serviceData);
 
-    const result = await subCategoryModel.deleteMany({
+    const result = await finishModel.deleteMany({
       _id: { $in: serviceData.ids },
     });
 
     if (result) {
-      response.message = `${result.deletedCount} ${subCategoryMessage.DELETED}`;
+      response.message = `${result.deletedCount} ${finishMessage.DELETED}`;
       response.isOkay = true;
     } else {
-      response.message = subCategoryMessage.NOT_DELETED;
-      response.errors.id = subCategoryMessage.INVALID_ID;
+      response.message = finishMessage.NOT_DELETED;
+      response.errors.id = finishMessage.INVALID_ID;
     }
   } catch (error) {
-    logFile.write(
-      `Service : subCategoryService: deleteMultiple, Error : ${error}`
-    );
+    logFile.write(`Service : finishService: deleteMultiple, Error : ${error}`);
     throw new Error(error);
   }
 

@@ -5,7 +5,11 @@ const { customCallback } = require("../helpers/joiHelper");
 module.exports.create = Joi.object({
   name: Joi.string().required().label("Name"),
   slug: Joi.string().required().label("Slug"),
-  category: Joi.string().required().label("Category"),
+
+  categories: Joi.array()
+    .items(Joi.string().required())
+    .required()
+    .label("Categories"),
   image: Joi.string().uri().allow("").label("Image"),
   shortDescription: Joi.string().allow("").label("Short Description"),
   status: Joi.boolean().label("Status"),
@@ -33,7 +37,7 @@ module.exports.findById = Joi.object({
 module.exports.update = Joi.object({
   name: Joi.string().required().label("Name"),
   slug: Joi.string().required().label("Slug"),
-  category: Joi.string().required().label("Category"),
+  categories: Joi.array().items(Joi.string()).required().label("Categories"),
   image: Joi.string().uri().allow("").label("Image"),
   shortDescription: Joi.string().allow("").label("Short Description"),
   metaTitle: Joi.string().allow("").label("Meta Title"),

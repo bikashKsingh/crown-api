@@ -12,10 +12,12 @@ const modelSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
     },
-    category: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "category",
-    },
+    categories: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "category",
+      },
+    ],
     image: {
       type: String,
       trim: true,

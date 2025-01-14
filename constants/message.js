@@ -377,6 +377,25 @@ module.exports = {
     INVALID_ID: "Size ID is invalid",
   },
 
+  finishMessage: {
+    CREATED: "Finish created!",
+    NOT_CREATED: "Finish not created!",
+
+    FETCHED: "Finish fetched !",
+    NOT_FETCHED: "Finish not fetched !",
+
+    UPDATED: "Finish updated!",
+    NOT_UPDATED: "Finish not updated !",
+
+    DELETED: "Finish deleted!",
+    NOT_DELETED: "Finish not deleted !",
+
+    ALREADY_EXISTS: "Finish already exists !",
+    NOT_AVAILABLE: "Finish not available !",
+
+    INVALID_ID: "Finish ID is invalid",
+  },
+
   trainerLevelMessage: {
     CREATED: "Trainer level created!",
     NOT_CREATED: "Trainer level not created!",
@@ -434,23 +453,23 @@ module.exports = {
     INVALID_ID: "Payment ID is invalid",
   },
 
-  typeMessage: {
-    CREATED: "Type created!",
-    NOT_CREATED: "Type not created!",
+  decorSeriesMessage: {
+    CREATED: "Decor Series created!",
+    NOT_CREATED: "Decor Series not created!",
 
-    FETCHED: "Type fetched !",
-    NOT_FETCHED: "Type not fetched !",
+    FETCHED: "Decor Series fetched !",
+    NOT_FETCHED: "Decor Series not fetched !",
 
-    UPDATED: "Type updated!",
-    NOT_UPDATED: "Type not updated !",
+    UPDATED: "Decor Series updated!",
+    NOT_UPDATED: "Decor Series not updated !",
 
-    DELETED: "Type deleted!",
-    NOT_DELETED: "Type not deleted !",
+    DELETED: "Decor Series deleted!",
+    NOT_DELETED: "Decor Series not deleted !",
 
-    ALREADY_EXISTS: "Type already exists !",
-    NOT_AVAILABLE: "Type not available !",
+    ALREADY_EXISTS: "Decor Series already exists !",
+    NOT_AVAILABLE: "Decor Series not available !",
 
-    INVALID_ID: "Type ID is invalid",
+    INVALID_ID: "Decor Series ID is invalid",
   },
 
   couponMessage: {

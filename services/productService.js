@@ -48,7 +48,7 @@ module.exports.findById = async (serviceData) => {
       .findById({ _id: serviceData.id })
       .populate({ path: "categories" })
       .populate({ path: "subCategories" })
-      .populate({ path: "type" })
+      .populate({ path: "decorSeries" })
       .populate({ path: "sizes" });
     if (result) {
       response.body = dbHelper.formatMongoData(result);
@@ -80,7 +80,7 @@ module.exports.findAll = async (serviceData) => {
       subCategory,
       categories = [],
       subCategories = [],
-      type,
+      decorSeries,
       sizes = [],
     } = serviceData;
 
@@ -116,7 +116,7 @@ module.exports.findAll = async (serviceData) => {
       };
     }
 
-    if (type) conditions.type = type;
+    if (decorSeries) conditions.decorSeries = decorSeries;
 
     if (sizes.length) {
       conditions.sizes = { $in: sizes };
@@ -134,7 +134,7 @@ module.exports.findAll = async (serviceData) => {
       .find(conditions)
       .populate({ path: "categories" })
       .populate({ path: "subCategories" })
-      .populate({ path: "type" })
+      .populate({ path: "decorSeries" })
       .populate({ path: "sizes" })
       .skip((parseInt(page) - 1) * parseInt(limit))
       .sort({ updatedAt: -1 })

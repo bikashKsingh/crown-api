@@ -10,7 +10,7 @@ module.exports.create = Joi.object({
     .items(Joi.string())
     .required()
     .label("Sub Categories"),
-  type: Joi.string().label("Type"),
+  decorSeries: Joi.string().label("Decor Series"),
   sizes: Joi.array().label("Sizes"),
 
   finish: Joi.string().label("Finish"),
@@ -21,12 +21,20 @@ module.exports.create = Joi.object({
   salePrice: Joi.number().label("Sale Price"),
   mrp: Joi.number().label("MRP"),
 
-  defaultImage: Joi.string().uri().allow("").label("Default Image"),
+  a4Image: Joi.string().uri().allow("").label("A4 Image"),
+  fullSheetImage: Joi.string().uri().allow("").label("Full Sheet Image"),
+  highResolutionImage: Joi.string()
+    .uri()
+    .allow("")
+    .label("High Resolution Image"),
+
   defaultVideo: Joi.string().uri().allow("").label("Default Video"),
   images: Joi.array().items(Joi.string().uri()).label("Images"),
 
   descriptions: Joi.string().allow("").label("Descriptions"),
   shortDescription: Joi.string().allow("").label("Descriptions"),
+
+  ralNumber: Joi.string().allow("").label("Ral Number"),
 
   metaTitle: Joi.string().allow("").label("Meta Title"),
   metaDescription: Joi.string().allow("").label("Meta Descriptions"),
@@ -45,7 +53,7 @@ module.exports.findAll = Joi.object({
   categories: Joi.array(),
   subCategories: Joi.array(),
 
-  type: Joi.string(),
+  decorSeries: Joi.string(),
   sizes: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
   size: Joi.string(),
   status: Joi.string(),
@@ -65,7 +73,7 @@ module.exports.update = Joi.object({
     .items(Joi.string())
     .required()
     .label("Sub Categories"),
-  type: Joi.string().label("Type"),
+  decorSeries: Joi.string().label("Decor Series"),
   sizes: Joi.array().label("Sizes"),
 
   finish: Joi.string().label("Finish"),
@@ -76,12 +84,20 @@ module.exports.update = Joi.object({
   salePrice: Joi.number().label("Sale Price"),
   mrp: Joi.number().label("MRP"),
 
-  defaultImage: Joi.string().uri().allow("").label("Default Image"),
+  a4Image: Joi.string().uri().allow("").label("A4 Image"),
+  fullSheetImage: Joi.string().uri().allow("").label("Full Sheet Image"),
+  highResolutionImage: Joi.string()
+    .uri()
+    .allow("")
+    .label("High Resolution Image"),
+
   defaultVideo: Joi.string().uri().allow("").label("Default Video"),
   images: Joi.array().items(Joi.string().uri()).label("Images"),
 
   descriptions: Joi.string().allow("").label("Descriptions"),
   shortDescription: Joi.string().allow("").label("Descriptions"),
+
+  ralNumber: Joi.string().allow("").label("Ral Number"),
 
   metaTitle: Joi.string().allow("").label("Meta Title"),
   metaDescription: Joi.string().allow("").label("Meta Descriptions"),

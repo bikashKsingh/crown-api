@@ -1,4 +1,4 @@
-const typeService = require("../services/typeService");
+const finishService = require("../services/finishService");
 const _ = require("lodash");
 const { defaultServerResponse } = require("../constants/message");
 const logFile = require("../helpers/logFile");
@@ -7,7 +7,7 @@ const logFile = require("../helpers/logFile");
 module.exports.create = async (req, res) => {
   const response = _.cloneDeep(defaultServerResponse);
   try {
-    const serviceResponse = await typeService.create(req.body);
+    const serviceResponse = await finishService.create(req.body);
     if (serviceResponse.isOkay) {
       response.body = serviceResponse.body;
       response.status = 200;
@@ -16,7 +16,7 @@ module.exports.create = async (req, res) => {
     }
     response.message = serviceResponse.message;
   } catch (error) {
-    logFile.write(`Controller: typeController: create, Error : ${error}`);
+    logFile.write(`Controller: finishController: create, Error : ${error}`);
 
     response.message = error.message;
   }
@@ -27,7 +27,7 @@ module.exports.create = async (req, res) => {
 module.exports.findById = async (req, res) => {
   const response = _.cloneDeep(defaultServerResponse);
   try {
-    const serviceResponse = await typeService.findById(req.params);
+    const serviceResponse = await finishService.findById(req.params);
     if (serviceResponse.isOkay) {
       response.body = serviceResponse.body;
       response.status = 200;
@@ -36,7 +36,7 @@ module.exports.findById = async (req, res) => {
     }
     response.message = serviceResponse.message;
   } catch (error) {
-    logFile.write(`Controller: typeController: findById, Error : ${error}`);
+    logFile.write(`Controller: finishController: findById, Error : ${error}`);
     response.message = error.message;
   }
   res.status(response.status).send(response);
@@ -46,7 +46,7 @@ module.exports.findById = async (req, res) => {
 module.exports.findAll = async (req, res) => {
   const response = _.cloneDeep(defaultServerResponse);
   try {
-    const serviceResponse = await typeService.findAll(req.query);
+    const serviceResponse = await finishService.findAll(req.query);
     if (serviceResponse.isOkay) {
       response.body = serviceResponse.body;
       response.page = serviceResponse.page;
@@ -59,7 +59,7 @@ module.exports.findAll = async (req, res) => {
     }
     response.message = serviceResponse.message;
   } catch (error) {
-    logFile.write(`Controller: typeController: findAll, Error : ${error}`);
+    logFile.write(`Controller: finishController: findAll, Error : ${error}`);
     response.message = error.message;
   }
   res.status(response.status).send(response);
@@ -69,7 +69,7 @@ module.exports.findAll = async (req, res) => {
 module.exports.update = async (req, res) => {
   const response = _.cloneDeep(defaultServerResponse);
   try {
-    const serviceResponse = await typeService.update({
+    const serviceResponse = await finishService.update({
       id: req.params.id,
       body: req.body,
     });
@@ -83,7 +83,7 @@ module.exports.update = async (req, res) => {
 
     response.message = serviceResponse.message;
   } catch (error) {
-    logFile.write(`Controller: typeController: update, Error : ${error}`);
+    logFile.write(`Controller: finishController: update, Error : ${error}`);
     response.message = error.message;
   }
   res.status(response.status).send(response);
@@ -93,7 +93,7 @@ module.exports.update = async (req, res) => {
 module.exports.delete = async (req, res) => {
   const response = _.cloneDeep(defaultServerResponse);
   try {
-    const serviceResponse = await typeService.delete(req.params);
+    const serviceResponse = await finishService.delete(req.params);
     if (serviceResponse.isOkay) {
       response.body = serviceResponse.body;
       response.status = 200;
@@ -102,7 +102,7 @@ module.exports.delete = async (req, res) => {
     }
     response.message = serviceResponse.message;
   } catch (error) {
-    logFile.write(`Controller: typeController: delete, Error : ${error}`);
+    logFile.write(`Controller: finishController: delete, Error : ${error}`);
     response.message = error.message;
   }
   res.status(response.status).send(response);
@@ -112,7 +112,7 @@ module.exports.delete = async (req, res) => {
 module.exports.deleteMultiple = async (req, res) => {
   const response = _.cloneDeep(defaultServerResponse);
   try {
-    const serviceResponse = await typeService.deleteMultiple(req.body);
+    const serviceResponse = await finishService.deleteMultiple(req.body);
     if (serviceResponse.isOkay) {
       response.body = serviceResponse.body;
       response.status = 200;
@@ -122,7 +122,7 @@ module.exports.deleteMultiple = async (req, res) => {
     response.message = serviceResponse.message;
   } catch (error) {
     logFile.write(
-      `Controller: typeController: deleteMultiple, Error : ${error}`
+      `Controller: finishController: deleteMultiple, Error : ${error}`
     );
     response.message = error.message;
   }
