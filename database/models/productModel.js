@@ -22,17 +22,13 @@ const modelSchema = new mongoose.Schema(
       ref: "decorSeries",
     },
 
-    sizes: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "size",
-      },
-    ],
+    sizes: [{ type: mongoose.Schema.Types.ObjectId, ref: "size" }],
+    sizeFinishes: [{ type: mongoose.Schema.Types.ObjectId, ref: "sizeFinish" }],
 
     salePrice: { type: Number, default: 0 },
     mrp: { type: Number, default: 0 },
 
-    finish: { type: String, trim: true },
+    // finish: { type: String, trim: true },
     decorName: { type: String, trim: true },
     decorNumber: { type: String, trim: true, unique: true },
     sku: { type: String, trim: true },

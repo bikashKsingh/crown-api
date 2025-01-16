@@ -396,6 +396,25 @@ module.exports = {
     INVALID_ID: "Finish ID is invalid",
   },
 
+  sizeFinishMessage: {
+    CREATED: "Size & Finish created!",
+    NOT_CREATED: "Size & Finish not created!",
+
+    FETCHED: "Size & Finish fetched !",
+    NOT_FETCHED: "Size & Finish not fetched !",
+
+    UPDATED: "Size & Finish updated!",
+    NOT_UPDATED: "Size & Finish not updated !",
+
+    DELETED: "Size & Finish deleted!",
+    NOT_DELETED: "Size & Finish not deleted !",
+
+    ALREADY_EXISTS: "Size & Finish already exists !",
+    NOT_AVAILABLE: "Size & Finish not available !",
+
+    INVALID_ID: "Size & Finish ID is invalid",
+  },
+
   trainerLevelMessage: {
     CREATED: "Trainer level created!",
     NOT_CREATED: "Trainer level not created!",

@@ -1,4 +1,5 @@
 const productModel = require("../database/models/productModel");
+const sizeFinishModel = require("../database/models/sizeFinishModel");
 const { serviceResponse, productMessage } = require("../constants/message");
 const dbHelper = require("../helpers/dbHelper");
 const _ = require("lodash");
@@ -20,6 +21,17 @@ module.exports.create = async (serviceData) => {
       };
       response.message = productMessage.ALREADY_EXISTS;
       return response;
+    }
+
+    if (serviceData.sizes) {
+      let sizeFinishes = await sizeFinishModel.find(
+        {
+          size: { $in: serviceData.sizes },
+        },
+        { _id: 1 }
+      );
+
+      serviceData.sizeFinishes = sizeFinishes;
     }
 
     const newData = new productModel(serviceData);
@@ -49,7 +61,8 @@ module.exports.findById = async (serviceData) => {
       .populate({ path: "categories" })
       .populate({ path: "subCategories" })
       .populate({ path: "decorSeries" })
-      .populate({ path: "sizes" });
+      .populate({ path: "sizes" })
+      .populate({ path: "sizeFinishes" });
     if (result) {
       response.body = dbHelper.formatMongoData(result);
       response.message = productMessage.FETCHED;
@@ -136,6 +149,7 @@ module.exports.findAll = async (serviceData) => {
       .populate({ path: "subCategories" })
       .populate({ path: "decorSeries" })
       .populate({ path: "sizes" })
+      .populate({ path: "sizeFinishes" })
       .skip((parseInt(page) - 1) * parseInt(limit))
       .sort({ updatedAt: -1 })
       .limit(parseInt(limit));
@@ -164,6 +178,17 @@ module.exports.update = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
     const { id, body } = serviceData;
+
+    if (body.sizes) {
+      let sizeFinishes = await sizeFinishModel.find(
+        {
+          size: { $in: body.sizes },
+        },
+        { _id: 1 }
+      );
+
+      body.sizeFinishes = sizeFinishes;
+    }
 
     const result = await productModel.findByIdAndUpdate(id, body, {
       new: true,

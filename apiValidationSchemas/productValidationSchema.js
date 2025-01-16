@@ -11,9 +11,10 @@ module.exports.create = Joi.object({
     .required()
     .label("Sub Categories"),
   decorSeries: Joi.string().label("Decor Series"),
+
   sizes: Joi.array().label("Sizes"),
 
-  finish: Joi.string().label("Finish"),
+  // finish: Joi.string().label("Finish"),
   decorName: Joi.string().label("Decor Name"),
   decorNumber: Joi.string().label("Decor Number"),
   sku: Joi.string().label("SKU"),
@@ -74,9 +75,10 @@ module.exports.update = Joi.object({
     .required()
     .label("Sub Categories"),
   decorSeries: Joi.string().label("Decor Series"),
+
+  // sizeFinishes: Joi.array().label("Size & Finishes"),
   sizes: Joi.array().label("Sizes"),
 
-  finish: Joi.string().label("Finish"),
   decorName: Joi.string().label("Decor Name"),
   decorNumber: Joi.string().label("Decor Number"),
   sku: Joi.string().label("SKU"),

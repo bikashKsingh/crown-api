@@ -66,6 +66,7 @@ app.use("/api/v1/paymentSettings", require("./routes/paymentSettingRouter"));
 app.use("/api/v1/decorSeries", require("./routes/decorSeriesRouter"));
 app.use("/api/v1/sizes", require("./routes/sizeRouter"));
 app.use("/api/v1/finishes", require("./routes/finishRouter"));
+app.use("/api/v1/sizeFinishes", require("./routes/sizeFinishRouter"));
 app.use("/api/v1/products", require("./routes/productRouter"));
 app.use("/api/v1/orders", require("./routes/orderRouter"));
 
