@@ -18,19 +18,25 @@ const modelSchema = new mongoose.Schema(
       {
         product: { ref: "product", type: mongoose.Schema.Types.ObjectId },
         name: String,
-        defaultImage: String,
+        a4Image: String,
         salePrice: Number,
         mrp: Number,
         qty: Number,
+
         category: { ref: "category", type: mongoose.Schema.Types.ObjectId },
+
         subCategory: {
           ref: "subCategory",
           type: mongoose.Schema.Types.ObjectId,
         },
-        type: {
-          ref: "type",
+
+        decorSeries: {
           type: mongoose.Schema.Types.ObjectId,
+          ref: "decorSeries",
         },
+        decorName: { type: String, trim: true },
+        decorNumber: { type: String, trim: true },
+        ralNumber: { type: String, trim: true },
       },
     ],
 

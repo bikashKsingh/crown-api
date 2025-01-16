@@ -31,10 +31,11 @@ module.exports.create = async (serviceData) => {
         salePrice: productDetails.salePrice,
         mrp: productDetails.mrp,
         qty: item.qty,
-        finish: productDetails.finish,
+        decorSeries: productDetails.decorSeries,
         decorName: productDetails.decorName,
         decorNumber: productDetails.decorNumber,
-        defaultImage: productDetails.defaultImage,
+        ralNumber: productDetails.ralNumber,
+        a4Image: productDetails.a4Image,
         images: productDetails.images,
       };
 

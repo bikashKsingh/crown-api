@@ -58,13 +58,25 @@ module.exports.findById = async (serviceData) => {
   try {
     const result = await productModel
       .findById({ _id: serviceData.id })
-      .populate({ path: "categories" })
-      .populate({ path: "subCategories" })
-      .populate({ path: "decorSeries" })
-      .populate({ path: "sizes" })
+      .populate({ path: "categories", select: "name" })
+      .populate({ path: "subCategories", select: "name" })
+      .populate({ path: "decorSeries", select: "title" })
+      .populate({ path: "sizes", select: "title" })
       .populate({ path: "sizeFinishes" });
     if (result) {
-      response.body = dbHelper.formatMongoData(result);
+      // Perform further population on the result
+      const populatedResult = await productModel.populate(result, [
+        {
+          path: "sizeFinishes.size", // Populate a subfield within sizeFinishes
+          select: "title", // Select specific fields
+        },
+        {
+          path: "sizeFinishes.finishes", // Populate a subfield within sizeFinishes
+          select: "shortName fullName", // Select specific fields
+        },
+      ]);
+
+      response.body = dbHelper.formatMongoData(populatedResult);
       response.message = productMessage.FETCHED;
       response.isOkay = true;
     } else {
@@ -145,17 +157,29 @@ module.exports.findAll = async (serviceData) => {
 
     const result = await productModel
       .find(conditions)
-      .populate({ path: "categories" })
-      .populate({ path: "subCategories" })
-      .populate({ path: "decorSeries" })
-      .populate({ path: "sizes" })
+      .populate({ path: "categories", select: "name" })
+      .populate({ path: "subCategories", select: "name" })
+      .populate({ path: "decorSeries", select: "title" })
+      .populate({ path: "sizes", select: "title" })
       .populate({ path: "sizeFinishes" })
       .skip((parseInt(page) - 1) * parseInt(limit))
       .sort({ updatedAt: -1 })
       .limit(parseInt(limit));
 
     if (result) {
-      response.body = dbHelper.formatMongoData(result);
+      // Perform further population on the result
+      const populatedResult = await productModel.populate(result, [
+        {
+          path: "sizeFinishes.size", // Populate a subfield within sizeFinishes
+          select: "title", // Select specific fields
+        },
+        {
+          path: "sizeFinishes.finishes", // Populate a subfield within sizeFinishes
+          select: "shortName fullName", // Select specific fields
+        },
+      ]);
+
+      response.body = dbHelper.formatMongoData(populatedResult);
       response.isOkay = true;
       response.page = parseInt(page);
       response.totalPages = totalPages;
