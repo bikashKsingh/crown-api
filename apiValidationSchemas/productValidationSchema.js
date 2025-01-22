@@ -5,14 +5,19 @@ const { customCallback } = require("../helpers/joiHelper");
 module.exports.create = Joi.object({
   name: Joi.string().required().label("Name"),
   slug: Joi.string().required().label("Slug"),
-  categories: Joi.array().items(Joi.string()).required().label("Categories"),
-  subCategories: Joi.array()
+  categories: Joi.array()
     .items(Joi.string())
+    .min(1)
     .required()
+    .label("Categories"),
+  subCategories: Joi.array()
+    .items(Joi.string().required())
+    .required()
+    .min(1)
     .label("Sub Categories"),
-  decorSeries: Joi.string().label("Decor Series"),
+  decorSeries: Joi.string().required().label("Decor Series"),
 
-  sizes: Joi.array().label("Sizes"),
+  sizes: Joi.array().items(Joi.string().required()).required().label("Sizes"),
 
   // finish: Joi.string().label("Finish"),
   decorName: Joi.string().label("Decor Name"),
@@ -22,6 +27,8 @@ module.exports.create = Joi.object({
   salePrice: Joi.number().label("Sale Price"),
   mrp: Joi.number().label("MRP"),
 
+  image: Joi.string().label("Image"),
+
   a4Image: Joi.string().uri().allow("").label("A4 Image"),
   fullSheetImage: Joi.string().uri().allow("").label("Full Sheet Image"),
   highResolutionImage: Joi.string()
@@ -29,13 +36,13 @@ module.exports.create = Joi.object({
     .allow("")
     .label("High Resolution Image"),
 
-  defaultVideo: Joi.string().uri().allow("").label("Default Video"),
-  images: Joi.array().items(Joi.string().uri()).label("Images"),
+  // defaultVideo: Joi.string().uri().allow("").label("Default Video"),
+  // images: Joi.array().items(Joi.string().uri()).label("Images"),
 
   descriptions: Joi.string().allow("").label("Descriptions"),
   shortDescription: Joi.string().allow("").label("Descriptions"),
 
-  ralNumber: Joi.string().allow("").label("Ral Number"),
+  ralNumber: Joi.string().required().label("Ral Number"),
 
   metaTitle: Joi.string().allow("").label("Meta Title"),
   metaDescription: Joi.string().allow("").label("Meta Descriptions"),
@@ -55,6 +62,9 @@ module.exports.findAll = Joi.object({
   subCategories: Joi.array(),
 
   decorSeries: Joi.string(),
+
+  decorNumber: Joi.string(),
+
   sizes: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
   size: Joi.string(),
   status: Joi.string(),

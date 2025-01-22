@@ -4,17 +4,17 @@ const { serviceResponse, productMessage } = require("../constants/message");
 const dbHelper = require("../helpers/dbHelper");
 const _ = require("lodash");
 const logFile = require("../helpers/logFile");
+const { google } = require("googleapis");
 
 // create
 module.exports.create = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
-    // Check program is already exist or not
+    // Check if the product already exists
     const isExist = await productModel.findOne({
       $or: [{ name: serviceData.name }, { slug: serviceData.slug }],
     });
 
-    // already exists
     if (isExist) {
       response.errors = {
         name: productMessage.ALREADY_EXISTS,
@@ -23,8 +23,60 @@ module.exports.create = async (serviceData) => {
       return response;
     }
 
+    if (serviceData.image) {
+      const authenticate = () => {
+        const auth = new google.auth.GoogleAuth({
+          keyFile: process.env.GOOGLE_KEY_FILE || "./crown-google-api.json", // Use environment variable or default path
+          scopes: ["https://www.googleapis.com/auth/drive"],
+        });
+        return auth;
+      };
+
+      const auth = authenticate();
+      const drive = google.drive({ version: "v3", auth });
+
+      try {
+        const res = await drive.files.list({
+          q: `'${serviceData.image}' in parents`, // Query files in the specified folder
+          fields: "files(id, name)",
+        });
+
+        if (!res?.data?.files?.length) {
+          throw new Error("No files found in the specified folder");
+        }
+
+        const images = {};
+        for (let file of res.data.files) {
+          const fileName = file?.name?.split(".")[0];
+          if (fileName) images[fileName] = file.id;
+        }
+
+        const createThumbnailUrl = (fileId, size = 5000) =>
+          `https://drive.google.com/thumbnail?id=${fileId}&sz=w${size}`;
+
+        if (images["a4Image"]) {
+          serviceData["a4Image"] = createThumbnailUrl(images["a4Image"]);
+        }
+        if (images["fullSheetImage"]) {
+          serviceData["fullSheetImage"] = createThumbnailUrl(
+            images["fullSheetImage"]
+          );
+        }
+        if (images["highResolutionImage"]) {
+          serviceData["highResolutionImage"] = createThumbnailUrl(
+            images["highResolutionImage"]
+          );
+        }
+      } catch (error) {
+        logFile.write(
+          `Error fetching files from Google Drive: ${error.message}`
+        );
+        throw new Error("Failed to fetch images from Google Drive");
+      }
+    }
+
     if (serviceData.sizes) {
-      let sizeFinishes = await sizeFinishModel.find(
+      const sizeFinishes = await sizeFinishModel.find(
         {
           size: { $in: serviceData.sizes },
         },
@@ -46,7 +98,7 @@ module.exports.create = async (serviceData) => {
       response.errors.error = productMessage.NOT_CREATED;
     }
   } catch (error) {
-    logFile.write(`Service : productService: create, Error : ${error}`);
+    logFile.write(`Service: productService: create, Error: ${error}`);
     throw new Error(error.message);
   }
   return response;
@@ -106,6 +158,7 @@ module.exports.findAll = async (serviceData) => {
       categories = [],
       subCategories = [],
       decorSeries,
+      decorNumber,
       sizes = [],
     } = serviceData;
 
@@ -142,6 +195,7 @@ module.exports.findAll = async (serviceData) => {
     }
 
     if (decorSeries) conditions.decorSeries = decorSeries;
+    if (decorNumber) conditions.decorNumber = decorNumber;
 
     if (sizes.length) {
       conditions.sizes = { $in: sizes };
