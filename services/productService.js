@@ -57,11 +57,13 @@ module.exports.create = async (serviceData) => {
         if (images["a4Image"]) {
           serviceData["a4Image"] = createThumbnailUrl(images["a4Image"]);
         }
+
         if (images["fullSheetImage"]) {
           serviceData["fullSheetImage"] = createThumbnailUrl(
             images["fullSheetImage"]
           );
         }
+
         if (images["highResolutionImage"]) {
           serviceData["highResolutionImage"] = createThumbnailUrl(
             images["highResolutionImage"]
