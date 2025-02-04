@@ -88,8 +88,17 @@ module.exports.create = async (serviceData) => {
       serviceData.sizeFinishes = sizeFinishes;
     }
 
+    // const newData = new productModel(serviceData);
+    // const result = (await newData.save()).populate();
+
     const newData = new productModel(serviceData);
-    const result = await newData.save();
+    const savedResult = await newData.save();
+    const result = await savedResult.populate([
+      "categories",
+      "subCategories",
+      "decorSeries",
+      "sizes",
+    ]);
 
     if (result) {
       response.body = dbHelper.formatMongoData(result);
