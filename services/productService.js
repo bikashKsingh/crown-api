@@ -10,16 +10,27 @@ const { google } = require("googleapis");
 module.exports.create = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
-    // Check if the product already exists
-    const isExist = await productModel.findOne({
-      $or: [{ name: serviceData.name }, { slug: serviceData.slug }],
+    // Check if the product slug already exists
+    const isSlugExist = await productModel.findOne({ slug: serviceData.slug });
+
+    if (isSlugExist) {
+      response.errors = {
+        slug: productMessage.SLUG_ALREADY_EXISTS,
+      };
+      response.message = productMessage.SLUG_ALREADY_EXISTS;
+      return response;
+    }
+
+    // Check if the product decor Number already exists
+    const isDecorNumberExist = await productModel.findOne({
+      decorNumber: serviceData.decorNumber,
     });
 
-    if (isExist) {
+    if (isDecorNumberExist) {
       response.errors = {
-        name: productMessage.ALREADY_EXISTS,
+        decorNumber: productMessage.DECOR_NUMBER_ALREADY_EXISTS,
       };
-      response.message = productMessage.ALREADY_EXISTS;
+      response.message = productMessage.DECOR_NUMBER_ALREADY_EXISTS;
       return response;
     }
 

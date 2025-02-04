@@ -29,7 +29,7 @@ const modelSchema = new mongoose.Schema(
     mrp: { type: Number, default: 0 },
 
     // finish: { type: String, trim: true },
-    decorName: { type: String, trim: true },
+    // decorName: { type: String, trim: true },
     decorNumber: { type: String, trim: true, unique: true },
     sku: { type: String, trim: true },
 
@@ -37,8 +37,8 @@ const modelSchema = new mongoose.Schema(
     fullSheetImage: { type: String, trim: true },
     highResolutionImage: { type: String, trim: true },
 
-    defaultVideo: { type: String, trim: true },
-    images: [{ type: String, trim: true }],
+    // defaultVideo: { type: String, trim: true },
+    // images: [{ type: String, trim: true }],
 
     descriptions: { type: String, trim: true },
     shortDescription: { type: String, trim: true },

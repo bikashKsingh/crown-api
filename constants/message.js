@@ -277,6 +277,10 @@ module.exports = {
     NOT_DELETED: "Product not deleted !",
 
     ALREADY_EXISTS: "Product already exists !",
+    SLUG_ALREADY_EXISTS: "Duplicate Error : Product slug must be unique !",
+    DECOR_NUMBER_ALREADY_EXISTS:
+      "Duplicate Error : Product decor number must be unique !",
+
     NOT_AVAILABLE: "Product not available !",
 
     INVALID_ID: "Product ID is invalid",
