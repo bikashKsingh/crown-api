@@ -71,19 +71,22 @@ module.exports.findAll = async (serviceData) => {
       limit = 10,
       page = 1,
       searchQuery,
-      status = "ALL",
+      status = true,
       isDeleted = false,
     } = serviceData;
 
     // SearchQuery
     if (searchQuery) {
       conditions = {
-        $or: [{ title: { $regex: searchQuery, $options: "i" } }],
+        $or: [
+          { shortName: { $regex: searchQuery, $options: "i" } },
+          { fullName: { $regex: searchQuery, $options: "i" } },
+        ],
       };
     }
 
     // status
-    if (status == "ALL") {
+    if (status == "All") {
       delete conditions.status;
     } else {
       conditions.status = status;
