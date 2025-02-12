@@ -29,10 +29,10 @@ module.exports.create = Joi.object({
 
   image: Joi.string().label("Image"),
 
-  a4Image: Joi.string().uri().allow("").label("A4 Image"),
-  fullSheetImage: Joi.string().uri().allow("").label("Full Sheet Image"),
+  a4Image: Joi.string().allow("").label("A4 Image"),
+  fullSheetImage: Joi.string().allow("").label("Full Sheet Image"),
   highResolutionImage: Joi.string()
-    .uri()
+
     .allow("")
     .label("High Resolution Image"),
 
@@ -103,12 +103,9 @@ module.exports.update = Joi.object({
 
   image: Joi.string().label("Image"),
 
-  a4Image: Joi.string().uri().allow("").label("A4 Image"),
-  fullSheetImage: Joi.string().uri().allow("").label("Full Sheet Image"),
-  highResolutionImage: Joi.string()
-    .uri()
-    .allow("")
-    .label("High Resolution Image"),
+  a4Image: Joi.string().allow("").label("A4 Image"),
+  fullSheetImage: Joi.string().allow("").label("Full Sheet Image"),
+  highResolutionImage: Joi.string().allow("").label("High Resolution Image"),
 
   // defaultVideo: Joi.string().uri().allow("").label("Default Video"),
   // images: Joi.array().items(Joi.string().uri()).label("Images"),
