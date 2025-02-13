@@ -5,8 +5,15 @@ const { ORDER_STATUS } = require("../constants/orderStatus");
 // create
 module.exports.create = Joi.object({
   name: Joi.string().required().label("Name"),
-  mobile: Joi.string().required().label("Mobile"),
-  email: Joi.string().required().label("Email"),
+  mobile: Joi.string()
+    .regex(/^\d{10}$/) // Allows exactly 10 digits
+    .messages({
+      "string.empty": `"Mobile" must contain a value`,
+      "string.pattern.base": `"Mobile" must be a valid 10-digit number"`,
+    })
+    .required()
+    .label("Mobile"),
+  email: Joi.string().email().trim().required().label("Email"),
 
   // Shipping Address
   address: Joi.string().required().label("Address"),
@@ -42,17 +49,23 @@ module.exports.findById = Joi.object({
 
 // update
 module.exports.update = Joi.object({
-  name: Joi.string().required().label("Name"),
-  mobile: Joi.string().required().label("Mobile"),
-  email: Joi.string().required().label("Email"),
+  name: Joi.string().label("Name"),
+  mobile: Joi.string()
+    .regex(/^\d{10}$/) // Allows exactly 10 digits
+    .messages({
+      "string.empty": `"Mobile" must contain a value`,
+      "string.pattern.base": `"Mobile" must be a valid 10-digit number"`,
+    })
+    .label("Mobile"),
+  email: Joi.string().email().label("Email"),
 
   // Shipping Address
-  address: Joi.string().required().label("Address"),
-  locality: Joi.string().required().allow("").label("Locality"),
-  city: Joi.string().required().allow("").label("City"),
-  state: Joi.string().required().allow("").label("State"),
-  country: Joi.string().required().allow("").label("Country"),
-  pincode: Joi.string().required().allow("").label("Pincode"),
+  address: Joi.string().label("Address"),
+  locality: Joi.string().allow("").label("Locality"),
+  city: Joi.string().allow("").label("City"),
+  state: Joi.string().allow("").label("State"),
+  country: Joi.string().allow("").label("Country"),
+  pincode: Joi.string().allow("").label("Pincode"),
   orderStatus: Joi.string().valid(...ORDER_STATUS, ""),
 });
 
