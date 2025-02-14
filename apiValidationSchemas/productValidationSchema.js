@@ -66,7 +66,6 @@ module.exports.findAll = Joi.object({
   decorNumber: Joi.string(),
 
   sizes: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
-  size: Joi.string(),
   status: Joi.string(),
 });
 

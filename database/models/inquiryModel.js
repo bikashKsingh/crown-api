@@ -18,10 +18,12 @@ const modelSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "product",
     },
+
     resumeFile: {
       type: String,
       default: "",
     },
+
     position: {
       type: String,
       default: "",

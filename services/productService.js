@@ -217,10 +217,15 @@ module.exports.findAll = async (serviceData) => {
     }
 
     if (decorSeries) conditions.decorSeries = decorSeries;
+
     if (decorNumber) conditions.decorNumber = decorNumber;
 
-    if (sizes.length) {
-      conditions.sizes = { $in: sizes };
+    if (sizes) {
+      if (Array.isArray(sizes) && sizes.length) {
+        conditions.sizes = { $in: sizes };
+      } else if (typeof sizes === "string") {
+        conditions.sizes = sizes; // Single ID case
+      }
     }
 
     // DeletedAccount
