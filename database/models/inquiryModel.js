@@ -5,7 +5,6 @@ const modelSchema = new mongoose.Schema(
   {
     name: { type: String, trim: true, required: true },
     email: { type: String, trim: true, required: true },
-    countryCode: { type: String, default: "" },
     mobile: { type: String, default: "" },
 
     message: { type: String, default: "" },

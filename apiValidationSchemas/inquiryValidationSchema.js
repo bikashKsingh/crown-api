@@ -7,7 +7,6 @@ const { INQUIRY_STATUS } = require("../constants/inquiryStatus");
 module.exports.create = Joi.object({
   name: Joi.string().trim().required().min(3).label("Name"),
   email: Joi.string().email().trim().required().label("Email"),
-  countryCode: Joi.string().trim().required().label("Country Code"),
   mobile: Joi.string()
     .regex(/^[1-9]\d{9}$/)
     .required()
@@ -40,7 +39,6 @@ module.exports.create = Joi.object({
 module.exports.update = Joi.object({
   name: Joi.string().trim().required().min(3).label("Name"),
   email: Joi.string().email().trim().required().label("Email"),
-  countryCode: Joi.string().trim().label("Country Code"),
   mobile: Joi.string()
     .regex(/^[6-9]\d{9}$/)
     .messages({
