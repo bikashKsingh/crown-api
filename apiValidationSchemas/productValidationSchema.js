@@ -61,6 +61,9 @@ module.exports.findAll = Joi.object({
   categories: Joi.array(),
   subCategories: Joi.array(),
 
+  categorySlug: Joi.string(),
+  subCategorySlug: Joi.string(),
+
   decorSeries: Joi.string(),
 
   decorNumber: Joi.string(),

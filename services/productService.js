@@ -5,6 +5,8 @@ const dbHelper = require("../helpers/dbHelper");
 const _ = require("lodash");
 const logFile = require("../helpers/logFile");
 const { google } = require("googleapis");
+const categoryModel = require("../database/models/categoryModel");
+const subCategoryModel = require("../database/models/subCategoryModel");
 
 // create
 module.exports.create = async (serviceData) => {
@@ -182,6 +184,8 @@ module.exports.findAll = async (serviceData) => {
       decorSeries,
       decorNumber,
       sizes = [],
+      categorySlug = "",
+      subCategorySlug = "",
     } = serviceData;
 
     // SearchQuery
@@ -203,6 +207,20 @@ module.exports.findAll = async (serviceData) => {
 
     if (category) conditions.categories = category;
     if (subCategory) conditions.subCategories = subCategory;
+
+    // for category slug
+    if (categorySlug) {
+      const catData = await categoryModel.findOne({ slug: categorySlug });
+      if (!catData) return;
+      conditions.categories = catData._id;
+    }
+
+    // for sub category slug
+    if (subCategorySlug) {
+      const catData = await subCategoryModel.findOne({ slug: subCategorySlug });
+      if (!catData) return;
+      conditions.subCategories = catData._id;
+    }
 
     if (categories?.length) {
       conditions.categories = {
