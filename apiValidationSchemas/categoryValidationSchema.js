@@ -25,6 +25,7 @@ module.exports.create = Joi.object({
 module.exports.findAll = Joi.object({
   page: Joi.string(),
   limit: Joi.string(),
+  slug: Joi.string(),
   searchQuery: Joi.string(),
   status: Joi.string(),
 });

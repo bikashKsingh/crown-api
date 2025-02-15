@@ -71,6 +71,7 @@ module.exports.findAll = async (serviceData) => {
       searchQuery,
       status = true,
       isDeleted = false,
+      slug = "",
     } = serviceData;
 
     // SearchQuery
@@ -89,6 +90,8 @@ module.exports.findAll = async (serviceData) => {
     } else {
       conditions.status = status;
     }
+
+    if (slug) conditions.slug = slug;
 
     // DeletedAccount
     conditions.isDeleted = isDeleted;
