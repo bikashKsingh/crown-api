@@ -14,6 +14,12 @@ const modelSchema = new mongoose.Schema(
       enum: INQUIRY_TYPES,
       default: INQUIRY_TYPES[0],
     },
+
+    visitorType: {
+      type: String,
+      default: "",
+    },
+
     product: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "product",

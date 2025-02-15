@@ -6,11 +6,11 @@ const { ORDER_STATUS } = require("../constants/orderStatus");
 module.exports.create = Joi.object({
   name: Joi.string().required().label("Name"),
   mobile: Joi.string()
-    .regex(/^\d{10}$/) // Allows exactly 10 digits
-    .messages({
-      "string.empty": `"Mobile" must contain a value`,
-      "string.pattern.base": `"Mobile" must be a valid 10-digit number"`,
-    })
+    // .regex(/^\d{10}$/) // Allows exactly 10 digits
+    // .messages({
+    //   "string.empty": `"Mobile" must contain a value`,
+    //   "string.pattern.base": `"Mobile" must be a valid 10-digit number"`,
+    // })
     .required()
     .label("Mobile"),
   email: Joi.string().email().trim().required().label("Email"),
@@ -51,11 +51,11 @@ module.exports.findById = Joi.object({
 module.exports.update = Joi.object({
   name: Joi.string().label("Name"),
   mobile: Joi.string()
-    .regex(/^\d{10}$/) // Allows exactly 10 digits
-    .messages({
-      "string.empty": `"Mobile" must contain a value`,
-      "string.pattern.base": `"Mobile" must be a valid 10-digit number"`,
-    })
+    // .regex(/^\d{10}$/) // Allows exactly 10 digits
+    // .messages({
+    //   "string.empty": `"Mobile" must contain a value`,
+    //   "string.pattern.base": `"Mobile" must be a valid 10-digit number"`,
+    // })
     .label("Mobile"),
   email: Joi.string().email().label("Email"),
 

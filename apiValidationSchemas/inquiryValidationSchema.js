@@ -8,12 +8,12 @@ module.exports.create = Joi.object({
   name: Joi.string().trim().required().min(3).label("Name"),
   email: Joi.string().email().trim().required().label("Email"),
   mobile: Joi.string()
-    .regex(/^[1-9]\d{9}$/)
+    // .regex(/^[1-9]\d{9}$/)
     .required()
-    .messages({
-      "string.empty": `"Mobile" must contain value`,
-      "string.pattern.base": `"Mobile" must be a valid Number`,
-    })
+    // .messages({
+    //   "string.empty": `"Mobile" must contain value`,
+    //   "string.pattern.base": `"Mobile" must be a valid Number`,
+    // })
     .label("Mobile"),
 
   message: Joi.string().allow("").trim().label("Message"),
@@ -21,6 +21,7 @@ module.exports.create = Joi.object({
   inquiryType: Joi.string()
     .required()
     .valid(...INQUIRY_TYPES),
+  visitorType: Joi.string().allow("").label("Visitor Type"),
   product: Joi.string().allow("").trim().label("Product"),
   resumeFile: Joi.string().allow("").trim().label("Resume"),
   position: Joi.string().allow("").trim().label("Position"),
@@ -40,16 +41,17 @@ module.exports.update = Joi.object({
   name: Joi.string().trim().required().min(3).label("Name"),
   email: Joi.string().email().trim().required().label("Email"),
   mobile: Joi.string()
-    .regex(/^[6-9]\d{9}$/)
-    .messages({
-      "string.empty": `"Mobile" must contain value`,
-      "string.pattern.base": `"Mobile" must be a valid Number`,
-    })
+    // .regex(/^[6-9]\d{9}$/)
+    // .messages({
+    //   "string.empty": `"Mobile" must contain value`,
+    //   "string.pattern.base": `"Mobile" must be a valid Number`,
+    // })
     .label("Mobile"),
 
   message: Joi.string().allow("").trim().label("Message"),
 
   inquiryType: Joi.string().valid(...INQUIRY_TYPES),
+  visitorType: Joi.string().allow("").label("Visitor Type"),
   product: Joi.string().allow("").trim().label("Product"),
   resumeFile: Joi.string().allow("").trim().label("Resume"),
   position: Joi.string().allow("").trim().label("Position"),
