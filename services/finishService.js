@@ -98,7 +98,9 @@ module.exports.findAll = async (serviceData) => {
     conditions.isDeleted = isDeleted;
 
     if (priority) {
-      sortCondition.priority = priority == "ASC" ? 1 : -1;
+      sortCondition = {
+        priority: priority == "ASC" ? 1 : -1,
+      };
     }
 
     // count record

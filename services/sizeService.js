@@ -109,8 +109,12 @@ module.exports.findAll = async (serviceData) => {
     conditions.isDeleted = isDeleted;
 
     if (priority) {
-      sortCondition.priority = priority == "ASC" ? 1 : -1;
+      sortCondition = {
+        priority: priority == "ASC" ? 1 : -1,
+      };
     }
+
+    console.log(sortCondition);
 
     // count record
     const totalRecords = await sizeModel.countDocuments(conditions);
