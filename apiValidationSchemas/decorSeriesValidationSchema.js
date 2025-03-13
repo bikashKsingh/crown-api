@@ -13,7 +13,7 @@ module.exports.findAll = Joi.object({
   page: Joi.string(),
   limit: Joi.string(),
   searchQuery: Joi.string(),
-  priority: Joi.string().valid("ADC", "DESC"),
+  priority: Joi.string().valid("ASC", "DESC"),
   status: Joi.string().valid("ALL", "", "true", "false"),
 });
 
