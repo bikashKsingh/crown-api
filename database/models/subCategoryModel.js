@@ -6,6 +6,16 @@ const modelSchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
+
+    isApplication: {
+      type: Boolean,
+      default: false,
+    },
+    isAddedToNavigation: {
+      type: Boolean,
+      default: false,
+    },
+
     slug: {
       type: String,
       unique: true,
@@ -23,11 +33,18 @@ const modelSchema = new mongoose.Schema(
       trim: true,
     },
 
+    priority: { type: Number, default: 0 },
+
     shortDescription: {
       type: String,
       default: "",
       trim: true,
     },
+
+    listingTitle: { type: String, default: "", trim: true },
+    listingImage: { type: String, trim: true, default: "" },
+    listingDescription: { type: String, default: "", trim: true },
+
     metaTitle: {
       type: String,
       default: "",

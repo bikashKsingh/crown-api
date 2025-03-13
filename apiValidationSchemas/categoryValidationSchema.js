@@ -8,6 +8,9 @@ module.exports.create = Joi.object({
   textOverImage: Joi.string().label("Text Over Image"),
   image: Joi.string().allow("").label("Image"),
   buttonText: Joi.string().label("Button Text"),
+
+  priority: Joi.number().label("Priority"),
+
   usp: Joi.array().items(Joi.object()).allow("").label("USP"),
   shortDescription: Joi.string().allow("").label("Short Description"),
   metaTitle: Joi.string().allow("").label("Meta Title"),
@@ -27,6 +30,7 @@ module.exports.findAll = Joi.object({
   limit: Joi.string(),
   slug: Joi.string(),
   searchQuery: Joi.string(),
+  priority: Joi.string().valid("ADC", "DESC"),
   status: Joi.string(),
 });
 
@@ -42,6 +46,9 @@ module.exports.update = Joi.object({
   textOverImage: Joi.string().label("Text Over Image"),
   image: Joi.string().allow("").label("Image"),
   buttonText: Joi.string().label("Button Text"),
+
+  priority: Joi.number().label("Priority"),
+
   usp: Joi.array().items(Joi.object()).allow("").label("USP"),
   shortDescription: Joi.string().allow("").label("Short Description"),
   metaTitle: Joi.string().allow("").label("Meta Title"),

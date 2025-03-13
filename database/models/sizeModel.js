@@ -8,6 +8,15 @@ const modelSchema = new mongoose.Schema(
       unique: true,
     },
 
+    priority: { type: Number, default: 0 },
+
+    categories: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "category",
+      },
+    ],
+
     status: {
       type: Boolean,
       default: true,

@@ -44,9 +44,14 @@ module.exports.create = async (serviceData) => {
 module.exports.findById = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
-    const result = await sizeModel.findById({
-      _id: serviceData.id,
-    });
+    const result = await sizeModel
+      .findById({
+        _id: serviceData.id,
+      })
+      .populate({
+        path: "categories",
+        select: "name",
+      });
     if (result) {
       response.body = dbHelper.formatMongoData(result);
       response.message = sizeMessage.FETCHED;
@@ -67,12 +72,15 @@ module.exports.findAll = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
     let conditions = {};
+    let sortCondition = { createdAt: -1 };
     const {
       limit = 10,
       page = 1,
       searchQuery,
       status = "ALL",
       isDeleted = false,
+      priority = "",
+      categories = [],
     } = serviceData;
 
     // SearchQuery
@@ -89,8 +97,20 @@ module.exports.findAll = async (serviceData) => {
       conditions.status = status;
     }
 
+    if (categories) {
+      if (Array.isArray(categories) && categories.length) {
+        conditions.categories = { $in: categories };
+      } else if (typeof categories === "string") {
+        conditions.categories = categories; // Single ID case
+      }
+    }
+
     // DeletedAccount
     conditions.isDeleted = isDeleted;
+
+    if (priority) {
+      sortCondition.priority = priority == "ASC" ? 1 : -1;
+    }
 
     // count record
     const totalRecords = await sizeModel.countDocuments(conditions);
@@ -100,8 +120,12 @@ module.exports.findAll = async (serviceData) => {
     const result = await sizeModel
       .find(conditions)
       .skip((parseInt(page) - 1) * parseInt(limit))
-      .sort({ updatedAt: -1 })
-      .limit(parseInt(limit));
+      .sort(sortCondition)
+      .limit(parseInt(limit))
+      .populate({
+        path: "categories",
+        select: "name",
+      });
 
     if (result) {
       response.body = dbHelper.formatMongoData(result);

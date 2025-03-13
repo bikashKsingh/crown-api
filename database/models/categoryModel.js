@@ -7,6 +7,8 @@ const modelSchema = new mongoose.Schema(
     image: { type: String, trim: true },
     buttonText: { type: String, trim: true },
 
+    priority: { type: Number, default: 0 },
+
     shortDescription: { type: String, default: "", trim: true },
     metaTitle: { type: String, default: "", trim: true },
     metaDescription: { type: String, default: "", trim: true },

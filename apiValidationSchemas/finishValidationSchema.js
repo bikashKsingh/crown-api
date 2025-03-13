@@ -5,6 +5,7 @@ const { customCallback } = require("../helpers/joiHelper");
 module.exports.create = Joi.object({
   shortName: Joi.string().required().label("Short Name"),
   fullName: Joi.string().required().label("Full Name"),
+  priority: Joi.number().label("Priority"),
   status: Joi.boolean().required().label("Status"),
 });
 
@@ -13,6 +14,7 @@ module.exports.findAll = Joi.object({
   page: Joi.string(),
   limit: Joi.string(),
   searchQuery: Joi.string(),
+  priority: Joi.string().valid("ADC", "DESC"),
   status: Joi.string().valid("All", "", "true", "false"),
 });
 
@@ -25,6 +27,7 @@ module.exports.findById = Joi.object({
 module.exports.update = Joi.object({
   shortName: Joi.string().label("Short Name"),
   fullName: Joi.string().label("Full Name"),
+  priority: Joi.number().label("Priority"),
   status: Joi.boolean().label("Status"),
 });
 

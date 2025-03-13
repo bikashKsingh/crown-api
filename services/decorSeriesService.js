@@ -67,11 +67,13 @@ module.exports.findAll = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
     let conditions = {};
+    let sortCondition = { createdAt: -1 };
     const {
       limit = 10,
       page = 1,
       searchQuery,
       status = "ALL",
+      priority = "",
       isDeleted = false,
     } = serviceData;
 
@@ -92,6 +94,10 @@ module.exports.findAll = async (serviceData) => {
     // DeletedAccount
     conditions.isDeleted = isDeleted;
 
+    if (priority) {
+      sortCondition.priority = priority == "ASC" ? 1 : -1;
+    }
+
     // count record
     const totalRecords = await decorSeriesModel.countDocuments(conditions);
     // Calculate the total number of pages
@@ -100,7 +106,7 @@ module.exports.findAll = async (serviceData) => {
     const result = await decorSeriesModel
       .find(conditions)
       .skip((parseInt(page) - 1) * parseInt(limit))
-      .sort({ updatedAt: -1 })
+      .sort(sortCondition)
       .limit(parseInt(limit));
 
     if (result) {
