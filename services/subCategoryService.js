@@ -79,6 +79,7 @@ module.exports.findAll = async (serviceData) => {
       isApplication = false,
       isAddedToNavigation = false,
       priority = "",
+      slug = "",
     } = serviceData;
 
     // SearchQuery
@@ -106,6 +107,8 @@ module.exports.findAll = async (serviceData) => {
 
     // DeletedAccount
     conditions.isDeleted = isDeleted;
+
+    if (slug) conditions.slug = slug;
 
     if (priority) {
       sortCondition = {

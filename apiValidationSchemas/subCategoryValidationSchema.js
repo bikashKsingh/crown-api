@@ -37,6 +37,7 @@ module.exports.findAll = Joi.object({
   isAddedToNavigation: Joi.boolean().label("Added To Navigation"),
 
   priority: Joi.string().valid("ASC", "DESC"),
+  slug: Joi.string().allow(""),
 
   searchQuery: Joi.string(),
   category: Joi.string(),
