@@ -25,6 +25,19 @@ const modelSchema = new mongoose.Schema(
       ref: "product",
     },
 
+    category: { ref: "category", type: mongoose.Schema.Types.ObjectId },
+
+    subCategory: {
+      ref: "subCategory",
+      type: mongoose.Schema.Types.ObjectId,
+    },
+
+    decorSeries: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "decorSeries",
+    },
+    decorNumber: { type: String, trim: true },
+
     resumeFile: {
       type: String,
       default: "",

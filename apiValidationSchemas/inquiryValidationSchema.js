@@ -23,6 +23,11 @@ module.exports.create = Joi.object({
     .valid(...INQUIRY_TYPES),
   visitorType: Joi.string().allow("").label("Visitor Type"),
   product: Joi.string().allow("").trim().label("Product"),
+  category: Joi.string().allow("").trim().label("Category"),
+  subCategory: Joi.string().allow("").trim().label("Sub Category"),
+  decorSeries: Joi.string().allow("").trim().label("Decor Series"),
+  decorNumber: Joi.string().allow("").trim().label("Decor Number"),
+
   resumeFile: Joi.string().allow("").trim().label("Resume"),
   position: Joi.string().allow("").trim().label("Position"),
 
