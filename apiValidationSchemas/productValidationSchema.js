@@ -64,11 +64,13 @@ module.exports.findAll = Joi.object({
   categorySlug: Joi.string(),
   subCategorySlug: Joi.string(),
 
-  decorSeries: Joi.string(),
-
   decorNumber: Joi.string(),
 
   sizes: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
+  decorSeries: Joi.alternatives().try(
+    Joi.array().items(Joi.string()),
+    Joi.string()
+  ),
   status: Joi.string(),
 });
 

@@ -234,7 +234,7 @@ module.exports.findAll = async (serviceData) => {
       };
     }
 
-    if (decorSeries) conditions.decorSeries = decorSeries;
+    // if (decorSeries) conditions.decorSeries = decorSeries;
 
     if (decorNumber) conditions.decorNumber = decorNumber;
 
@@ -243,6 +243,14 @@ module.exports.findAll = async (serviceData) => {
         conditions.sizes = { $in: sizes };
       } else if (typeof sizes === "string") {
         conditions.sizes = sizes; // Single ID case
+      }
+    }
+
+    if (decorSeries) {
+      if (Array.isArray(decorSeries) && decorSeries.length) {
+        conditions.decorSeries = { $in: decorSeries };
+      } else if (typeof decorSeries === "string") {
+        conditions.decorSeries = decorSeries; // Single ID case
       }
     }
 
