@@ -11,9 +11,8 @@ module.exports.create = Joi.object({
     .required()
     .label("Categories"),
   subCategories: Joi.array()
-    .items(Joi.string().required())
-    .required()
-    .min(1)
+    .items(Joi.string())
+    .allow(null)
     .label("Sub Categories"),
   decorSeries: Joi.string().required().label("Decor Series"),
 
@@ -31,10 +30,7 @@ module.exports.create = Joi.object({
 
   a4Image: Joi.string().allow("").label("A4 Image"),
   fullSheetImage: Joi.string().allow("").label("Full Sheet Image"),
-  highResolutionImage: Joi.string()
-
-    .allow("")
-    .label("High Resolution Image"),
+  highResolutionImage: Joi.string().allow("").label("High Resolution Image"),
 
   // defaultVideo: Joi.string().uri().allow("").label("Default Video"),
   // images: Joi.array().items(Joi.string().uri()).label("Images"),
@@ -89,9 +85,8 @@ module.exports.update = Joi.object({
     .required()
     .label("Categories"),
   subCategories: Joi.array()
-    .items(Joi.string().required())
-    .required()
-    .min(1)
+    .items(Joi.string())
+    .allow(null)
     .label("Sub Categories"),
   decorSeries: Joi.string().required().label("Decor Series"),
 

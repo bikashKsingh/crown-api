@@ -7,7 +7,7 @@ const jwtValidation = require("../middlewares/jwtValidation");
 // create
 router.post(
   "/",
-  jwtValidation.validateAdminToken,
+  // jwtValidation.validateAdminToken,
   joiSchemaValidation.validateBody(newsletterValidationSchema.create),
   newsletterController.create
 );

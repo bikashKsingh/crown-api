@@ -27,6 +27,8 @@ module.exports.create = Joi.object({
     .items(
       Joi.object({
         product: Joi.custom(customCallback).label("Product"),
+        category: Joi.string().allow(""),
+        subCategory: Joi.string().allow(""),
         qty: Joi.number().label("Qty"),
       })
     )

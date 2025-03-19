@@ -34,7 +34,6 @@ const modelSchema = new mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "decorSeries",
         },
-        decorName: { type: String, trim: true },
         decorNumber: { type: String, trim: true },
         ralNumber: { type: String, trim: true },
       },
