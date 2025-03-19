@@ -24,19 +24,16 @@ module.exports.create = async (serviceData) => {
       let product = {
         product: productDetails._id,
         name: productDetails.name,
-        category: productDetails.category,
-        subCategory: productDetails.subCategory,
-        type: productDetails.type,
+        category: item.category,
+        subCategory: item.subCategory,
         sizes: productDetails.sizes,
         salePrice: productDetails.salePrice,
         mrp: productDetails.mrp,
         qty: item.qty,
         decorSeries: productDetails.decorSeries,
-        decorName: productDetails.decorName,
         decorNumber: productDetails.decorNumber,
         ralNumber: productDetails.ralNumber,
         a4Image: productDetails.a4Image,
-        images: productDetails.images,
       };
 
       products.push(product);
@@ -72,7 +69,10 @@ module.exports.findById = async (serviceData) => {
   try {
     const result = await orderModel
       .findById({ _id: serviceData.id })
-      .populate({ path: "products.product" });
+      .populate({ path: "products.product" })
+      .populate({ path: "products.category" })
+      .populate({ path: "products.subCategory" })
+      .populate({ path: "products.decorSeries" });
     if (result) {
       response.body = dbHelper.formatMongoData(result);
       response.message = orderMessage.FETCHED;
