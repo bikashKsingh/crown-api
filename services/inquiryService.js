@@ -32,7 +32,10 @@ module.exports.findById = async (serviceData) => {
   try {
     const result = await inquiryModel
       .findById({ _id: serviceData.id })
-      .populate("product");
+      .populate("product")
+      .populate("category")
+      .populate("subCategory")
+      .populate("decorSeries");
     if (result) {
       response.body = dbHelper.formatMongoData(result);
       response.message = inquiryMessage.FETCHED;
