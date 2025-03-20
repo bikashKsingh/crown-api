@@ -4,6 +4,7 @@ const dbHelper = require("../helpers/dbHelper");
 const _ = require("lodash");
 const logFile = require("../helpers/logFile");
 const productModel = require("../database/models/productModel");
+const moment = require("moment-timezone");
 
 // create
 module.exports.create = async (serviceData) => {
@@ -89,6 +90,75 @@ module.exports.findById = async (serviceData) => {
 };
 
 // findAll
+// module.exports.findAll = async (serviceData) => {
+//   const response = _.cloneDeep(serviceResponse);
+//   try {
+//     let conditions = {};
+//     const {
+//       limit = 10,
+//       page = 1,
+//       searchQuery,
+//       orderStatus = "All",
+//       isDeleted = false,
+//       startDate = null,
+//       endDate = null,
+//     } = serviceData;
+
+//     // SearchQuery
+//     // if (searchQuery) {
+//     //   conditions = {
+//     //     $or: [
+//     //       { title: { $regex: searchQuery, $options: "i" } },
+//     //       { slug: { $regex: searchQuery, $options: "i" } },
+//     //     ],
+//     //   };
+//     // }
+
+//     // Status
+//     if (orderStatus == "All") {
+//       delete conditions.orderStatus;
+//     } else {
+//       conditions.orderStatus = orderStatus;
+//     }
+
+//     // DeletedAccount
+//     conditions.isDeleted = isDeleted;
+
+//     // count record
+//     const totalRecords = await orderModel.countDocuments(conditions);
+//     // Calculate the total number of pages
+//     const totalPages = Math.ceil(totalRecords / parseInt(limit));
+
+//     if (startDate && endDate) {
+//     }
+
+//     const result = await orderModel
+//       .find(conditions)
+//       .populate({ path: "products.product" })
+//       .skip((parseInt(page) - 1) * parseInt(limit))
+//       .sort({ updatedAt: -1 })
+//       .limit(parseInt(limit));
+
+//     if (result) {
+//       response.body = dbHelper.formatMongoData(result);
+//       response.isOkay = true;
+//       response.page = parseInt(page);
+//       response.totalPages = totalPages;
+//       response.totalRecords = totalRecords;
+//       response.message = orderMessage.FETCHED;
+//     } else {
+//       response.message = orderMessage.NOT_FETCHED;
+//     }
+//   } catch (error) {
+//     logFile.write(`Service : orderService: findAll, Error : ${error}`);
+
+//     throw new Error(error);
+//   }
+
+//   return response;
+// };
+
+// findAll
 module.exports.findAll = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
@@ -96,34 +166,39 @@ module.exports.findAll = async (serviceData) => {
     const {
       limit = 10,
       page = 1,
-      searchQuery,
       orderStatus = "All",
       isDeleted = false,
+      startDate = null,
+      endDate = null,
     } = serviceData;
 
-    // SearchQuery
-    // if (searchQuery) {
-    //   conditions = {
-    //     $or: [
-    //       { title: { $regex: searchQuery, $options: "i" } },
-    //       { slug: { $regex: searchQuery, $options: "i" } },
-    //     ],
-    //   };
-    // }
-
     // Status
-    if (orderStatus == "All") {
-      delete conditions.orderStatus;
-    } else {
+    if (orderStatus !== "All") {
       conditions.orderStatus = orderStatus;
     }
 
     // DeletedAccount
     conditions.isDeleted = isDeleted;
 
-    // count record
+    // Convert startDate and endDate from IST to UTC
+    if (startDate && endDate) {
+      const startUTC = moment
+        .tz(startDate, "ddd MMM DD YYYY", "Asia/Kolkata")
+        .startOf("day") // 00:00:00 IST
+        .utc() // Convert to UTC
+        .toDate();
+
+      const endUTC = moment
+        .tz(endDate, "ddd MMM DD YYYY", "Asia/Kolkata")
+        .endOf("day") // 23:59:59 IST
+        .utc() // Convert to UTC
+        .toDate();
+
+      conditions.createdAt = { $gte: startUTC, $lte: endUTC };
+    }
+
+    // Count total records
     const totalRecords = await orderModel.countDocuments(conditions);
-    // Calculate the total number of pages
     const totalPages = Math.ceil(totalRecords / parseInt(limit));
 
     const result = await orderModel
@@ -145,7 +220,6 @@ module.exports.findAll = async (serviceData) => {
     }
   } catch (error) {
     logFile.write(`Service : orderService: findAll, Error : ${error}`);
-
     throw new Error(error);
   }
 

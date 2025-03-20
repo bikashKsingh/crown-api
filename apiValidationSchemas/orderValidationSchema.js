@@ -41,6 +41,8 @@ module.exports.findAll = Joi.object({
   page: Joi.string(),
   limit: Joi.string(),
   searchQuery: Joi.string(),
+  startDate: Joi.date(),
+  endDate: Joi.date(),
   product: Joi.string(),
 });
 
