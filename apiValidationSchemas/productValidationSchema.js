@@ -51,6 +51,7 @@ module.exports.findAll = Joi.object({
   page: Joi.string(),
   limit: Joi.string(),
   searchQuery: Joi.string(),
+
   category: Joi.string(),
   subCategory: Joi.string(),
 
@@ -89,7 +90,6 @@ module.exports.update = Joi.object({
     .allow(null)
     .label("Sub Categories"),
   decorSeries: Joi.string().required().label("Decor Series"),
-
   sizes: Joi.array().items(Joi.string().required()).required().label("Sizes"),
 
   // finish: Joi.string().label("Finish"),

@@ -194,6 +194,7 @@ module.exports.findAll = async (serviceData) => {
         $or: [
           { name: { $regex: searchQuery, $options: "i" } },
           { slug: { $regex: searchQuery, $options: "i" } },
+          { decorNumber: { $regex: searchQuery, $options: "i" } },
         ],
       };
     }
