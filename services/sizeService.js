@@ -114,8 +114,6 @@ module.exports.findAll = async (serviceData) => {
       };
     }
 
-    console.log(sortCondition);
-
     // count record
     const totalRecords = await sizeModel.countDocuments(conditions);
     // Calculate the total number of pages
