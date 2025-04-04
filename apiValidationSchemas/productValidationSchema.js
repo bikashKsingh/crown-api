@@ -76,6 +76,11 @@ module.exports.findById = Joi.object({
   id: Joi.custom(customCallback),
 });
 
+// findBySlug
+module.exports.findBySlug = Joi.object({
+  slug: Joi.string().required(),
+});
+
 // update
 module.exports.update = Joi.object({
   name: Joi.string().required().label("Name"),

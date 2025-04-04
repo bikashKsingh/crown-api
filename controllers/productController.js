@@ -42,6 +42,27 @@ module.exports.findById = async (req, res) => {
   res.status(response.status).send(response);
 };
 
+// findBySlug
+module.exports.findBySlug = async (req, res) => {
+  const response = _.cloneDeep(defaultServerResponse);
+  try {
+    const serviceResponse = await productService.findBySlug(req.params);
+    if (serviceResponse.isOkay) {
+      response.body = serviceResponse.body;
+      response.status = 200;
+    } else {
+      response.errors = serviceResponse.errors;
+    }
+    response.message = serviceResponse.message;
+  } catch (error) {
+    logFile.write(
+      `Controller: productController: findBySlug, Error : ${error}`
+    );
+    response.message = error.message;
+  }
+  res.status(response.status).send(response);
+};
+
 // findAll
 module.exports.findAll = async (req, res) => {
   const response = _.cloneDeep(defaultServerResponse);

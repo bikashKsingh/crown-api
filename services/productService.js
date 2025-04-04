@@ -166,6 +166,44 @@ module.exports.findById = async (serviceData) => {
   }
 };
 
+// findBySlug
+module.exports.findBySlug = async (serviceData) => {
+  const response = _.cloneDeep(serviceResponse);
+  try {
+    const result = await productModel
+      .findOne({ slug: serviceData.slug })
+      .populate({ path: "categories", select: "name" })
+      .populate({ path: "subCategories", select: "name" })
+      .populate({ path: "decorSeries", select: "title" })
+      .populate({ path: "sizes", select: "title" })
+      .populate({ path: "sizeFinishes" });
+    if (result) {
+      // Perform further population on the result
+      const populatedResult = await productModel.populate(result, [
+        {
+          path: "sizeFinishes.size", // Populate a subfield within sizeFinishes
+          select: "title", // Select specific fields
+        },
+        {
+          path: "sizeFinishes.finishes", // Populate a subfield within sizeFinishes
+          select: "shortName fullName", // Select specific fields
+        },
+      ]);
+
+      response.body = dbHelper.formatMongoData(populatedResult);
+      response.message = productMessage.FETCHED;
+      response.isOkay = true;
+    } else {
+      response.errors.error = productMessage.NOT_AVAILABLE;
+      response.message = productMessage.NOT_AVAILABLE;
+    }
+    return response;
+  } catch (error) {
+    logFile.write(`Service : productService: findBySlug, Error : ${error}`);
+    throw new Error(error);
+  }
+};
+
 // findAll
 module.exports.findAll = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);

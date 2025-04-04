@@ -12,6 +12,13 @@ router.post(
   productController.create
 );
 
+// findBySlug
+router.get(
+  "/bySlug/:slug",
+  joiSchemaValidation.validateParams(productValidationSchema.findBySlug),
+  productController.findBySlug
+);
+
 // findById
 router.get(
   "/:id",
