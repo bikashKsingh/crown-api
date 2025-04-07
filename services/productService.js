@@ -39,8 +39,7 @@ module.exports.create = async (serviceData) => {
     if (serviceData.image) {
       const authenticate = () => {
         const auth = new google.auth.GoogleAuth({
-          keyFile:
-            process.env.GOOGLE_KEY_FILE_PATH || "./crown-google-api.json", // Use environment variable or default path
+          keyFile: process.env.GOOGLE_KEY_FILE || "./crown-google-api.json", // Use environment variable or default path
           scopes: ["https://www.googleapis.com/auth/drive"],
         });
         return auth;
@@ -87,6 +86,7 @@ module.exports.create = async (serviceData) => {
         logFile.write(
           `Error fetching files from Google Drive: ${error.message}`
         );
+
         console.log(error);
         throw new Error(
           "Failed to fetch images from Google Drive",

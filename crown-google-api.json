@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "crown-448107",
+  "private_key_id": "6969440c81f4d61b700ba33d5882ebdcf7b7cea7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1ARdpEtkae2Vf\n5z6/TYqQG2gPEk31l/JJCSRCtPMUjnG5aFIhYeHe3Nx8KLkFQmDUzTnDPSUl6/vx\nb2FOUw4LuF/Jih0Wma3bJDUXVKdY4Vp7V0TBpsDbDSPInJDsJgYylWqgMB1QL5kg\nNn0meVDpP3iBdKV5E7SSdm6LknRfhFRhvSA7UL73nnYLVHSfMEbpoRPR173FV0gA\ni9WRumj6JvMHEnv77grErYLPAHZfZaEbW/Vd5y5mabCMTW3vMTN2xKlxkaJ7vnWh\njTfmfrKMDoteNvCz4XKjVkAdD7WTTJ3Edbbcbd+hEaX+YlZliQXGMS9ya2Jzig3X\n3HBST60FAgMBAAECggEASahTjAVJBw9PDitu6++UoxccDgIPapF2XcVUFbdIMkXT\nPrWWspIAFi6/pOD3hg3glMidKHfh/aAeKz59lR+UWC2kAUJsmu1YBBUka8WdwjwW\nk5nMV5fR5HJg7PrVuNuyavRF60EZNK/h+uthm34D8J9NHTVIP1DHC1EZpD+pjtJ+\nAvI+bKrtDxfkOn9Wuk9nrc2J+NDxW/wV/UTuroGLGh6C94rY9m6Ebd0rVjYXy3S4\nUWWdZ19HVCD0T1UIpXaj7JpjgZE5ocJKFcmcstohDumtUUvWkgUalKVqtl5m8q6e\nNyOBMm+PkRk+lo7A8vX8FOqm9KK1vdB3GifonNhwswKBgQDjfw1kW8TaL3ML/m2X\n2j0wb3OAK9/NJcL94JToEMPtoX2Rv9cVjZ+pLIger/m9vKU6K50rEiCCPZBdHAlS\nnwNZtASpFwPyBo6/g2Y4/Jv6iiYayTeeIE2wxKhw9oYJ4TS8yVcJT6ogB0cTvKPf\nQswDOK9AlNmSbmKvfL9OY6yNBwKBgQDLrs5rEx0V7u0KszLdbOlHGovNcLu/cs9l\nQMKeWyBT2YqPx62CCO0+5ShhFsz0WvcoJzuaVbbMdMsYlZ3/HcC+sa9QAG5lCyR0\nCt7yKWYf+AOS6bxT6ERuLIbVeTjoGLD7ydYowhWh7IlL5LUYwaelo/AozVwwZgFp\nA7DkUZU+kwKBgQDA00cJopMnEILmTqCbzpqAvGbc49NNck1lnP75+IPpnjDt4fov\nxZvn69vwjt4TCZvOw3rzL+koG4CKuyHXyvovBVvR6rUoZpCGGZ0CfnLDGGeV2qnu\nuJjBVN8k6H/STfXCcrH4LXMYtLJ1MzZ/HYII1PoOtlv4NuIktor8qZVu7wKBgAGw\n0cXRwswLz6vnEOUFomoUrlRmOyi7qz0L7JGj8ADCLYREBAywRkffXxZvOgRNPP/4\nU2ZUj8/iqEzr8QPNG2x5zRq85i2wifzsmi0oatCZHm55wjZwFyFS/UuIVhCXI+Dz\nK/PqqINPk1Qt8dLiyKF3Wub7zWgZcKmOfklm4/ZBAoGBAOLFY5msr5yxzLoRFrOz\nNNSH9BXxd9QMYBbVp6WIUtOmu3uwBmhlpY3QODnezeBljSTMsEhJXID/WghLMzy1\nWqq941MM5S3iPX2oAWoQHOF2dymaNIjvdXSM+ditzli7pXt6K3ROP7jvhUs5STDm\nITYliEIOOV9AH+m3j2O9wdXZ\n-----END PRIVATE KEY-----\n",
+  "client_email": "crown-service-account@crown-448107.iam.gserviceaccount.com",
+  "client_id": "107624623629005407980",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/crown-service-account%40crown-448107.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
