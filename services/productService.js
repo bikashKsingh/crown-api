@@ -39,7 +39,8 @@ module.exports.create = async (serviceData) => {
     if (serviceData.image) {
       const authenticate = () => {
         const auth = new google.auth.GoogleAuth({
-          keyFile: process.env.GOOGLE_KEY_FILE || "./crown-google-api.json", // Use environment variable or default path
+          keyFile:
+            process.env.GOOGLE_KEY_FILE_PATH || "./crown-google-api.json", // Use environment variable or default path
           scopes: ["https://www.googleapis.com/auth/drive"],
         });
         return auth;
