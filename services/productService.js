@@ -86,7 +86,10 @@ module.exports.create = async (serviceData) => {
         logFile.write(
           `Error fetching files from Google Drive: ${error.message}`
         );
-        throw new Error("Failed to fetch images from Google Drive");
+        throw new Error(
+          "Failed to fetch images from Google Drive",
+          error.message
+        );
       }
     }
 
