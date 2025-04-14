@@ -44,9 +44,7 @@ module.exports.create = async (serviceData) => {
 module.exports.findById = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
-    const result = await certificateModel
-      .findById({ _id: serviceData.id })
-      .populate({ path: "category" });
+    const result = await certificateModel.findById({ _id: serviceData.id });
     if (result) {
       response.body = dbHelper.formatMongoData(result);
       response.message = certificateMessage.FETCHED;
@@ -113,7 +111,6 @@ module.exports.findAll = async (serviceData) => {
 
     const result = await certificateModel
       .find(conditions)
-      .populate({ path: "category" })
       .skip((parseInt(page) - 1) * parseInt(limit))
       .sort(sortCondition)
       .limit(parseInt(limit));
