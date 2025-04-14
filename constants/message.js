@@ -127,6 +127,25 @@ module.exports = {
     INVALID_ID: "Category ID is invalid",
   },
 
+  catalogueCategoryMessage: {
+    CREATED: "Category created!",
+    NOT_CREATED: "Category not created!",
+
+    FETCHED: "Category fetched !",
+    NOT_FETCHED: "Category not fetched !",
+
+    UPDATED: "Category updated!",
+    NOT_UPDATED: "Category not updated !",
+
+    DELETED: "Category deleted!",
+    NOT_DELETED: "Category not deleted !",
+
+    ALREADY_EXISTS: "Category already exists !",
+    NOT_AVAILABLE: "Category not available !",
+
+    INVALID_ID: "Category ID is invalid",
+  },
+
   carouselMessage: {
     CREATED: "Carousel created!",
     NOT_CREATED: "Carousel not created!",
@@ -182,6 +201,44 @@ module.exports = {
     NOT_AVAILABLE: "Sub Category not available !",
 
     INVALID_ID: "Sub Category ID is invalid",
+  },
+
+  catalogueMessage: {
+    CREATED: "Catalogue created!",
+    NOT_CREATED: "Catalogue not created!",
+
+    FETCHED: "Catalogue fetched !",
+    NOT_FETCHED: "Catalogue not fetched !",
+
+    UPDATED: "Catalogue updated!",
+    NOT_UPDATED: "Catalogue not updated !",
+
+    DELETED: "Catalogue deleted!",
+    NOT_DELETED: "Catalogue not deleted !",
+
+    ALREADY_EXISTS: "Catalogue already exists !",
+    NOT_AVAILABLE: "Catalogue not available !",
+
+    INVALID_ID: "Catalogue ID is invalid",
+  },
+
+  certificateMessage: {
+    CREATED: "Certificate created!",
+    NOT_CREATED: "Certificate not created!",
+
+    FETCHED: "Certificate fetched !",
+    NOT_FETCHED: "Certificate not fetched !",
+
+    UPDATED: "Certificate updated!",
+    NOT_UPDATED: "Certificate not updated !",
+
+    DELETED: "Certificate deleted!",
+    NOT_DELETED: "Certificate not deleted !",
+
+    ALREADY_EXISTS: "Certificate already exists !",
+    NOT_AVAILABLE: "Certificate not available !",
+
+    INVALID_ID: "Certificate ID is invalid",
   },
 
   programDurationMessage: {

@@ -45,6 +45,12 @@ app.get("/files", (req, res) => {
 // router middleware
 app.use("/api/v1/admins", require("./routes/adminRouter"));
 app.use("/api/v1/categories", require("./routes/categoryRouter"));
+app.use(
+  "/api/v1/catalogueCategories",
+  require("./routes/catalogueCategoryRouter")
+);
+app.use("/api/v1/catalogues", require("./routes/catalogueRouter"));
+app.use("/api/v1/certificates", require("./routes/certificateRouter"));
 
 app.use("/api/v1/carousels", require("./routes/carouselRouter"));
 app.use("/api/v1/homepage", require("./routes/homepageRoutes"));
