@@ -213,6 +213,8 @@ module.exports.findAll = async (serviceData) => {
   const response = _.cloneDeep(serviceResponse);
   try {
     let conditions = {};
+    let sortCondition = { updatedAt: -1 };
+
     const {
       limit = 10,
       page = 1,
@@ -239,6 +241,11 @@ module.exports.findAll = async (serviceData) => {
           { decorNumber: { $regex: searchQuery, $options: "i" } },
         ],
       };
+
+      if (!isNaN(Number(searchQuery))) {
+        // conditions.decorNumber = searchQuery;
+        sortCondition = { decorNumber: 1 };
+      }
     }
 
     // Status
@@ -313,7 +320,7 @@ module.exports.findAll = async (serviceData) => {
       .populate({ path: "sizes", select: "title" })
       .populate({ path: "sizeFinishes" })
       .skip((parseInt(page) - 1) * parseInt(limit))
-      .sort({ updatedAt: -1 })
+      .sort()
       .limit(parseInt(limit));
 
     if (result) {
