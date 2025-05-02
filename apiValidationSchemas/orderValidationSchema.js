@@ -18,10 +18,10 @@ module.exports.create = Joi.object({
   // Shipping Address
   address: Joi.string().required().label("Address"),
   locality: Joi.string().required().allow("").label("Locality"),
-  city: Joi.string().required().allow("").label("City"),
-  state: Joi.string().required().allow("").label("State"),
-  country: Joi.string().required().allow("").label("Country"),
-  pincode: Joi.string().required().allow("").label("Pincode"),
+  city: Joi.string().required().label("City"),
+  state: Joi.string().required().label("State"),
+  country: Joi.string().required().label("Country"),
+  pincode: Joi.string().required().label("Pincode"),
 
   products: Joi.array()
     .items(
@@ -66,10 +66,10 @@ module.exports.update = Joi.object({
   // Shipping Address
   address: Joi.string().label("Address"),
   locality: Joi.string().allow("").label("Locality"),
-  city: Joi.string().allow("").label("City"),
-  state: Joi.string().allow("").label("State"),
-  country: Joi.string().allow("").label("Country"),
-  pincode: Joi.string().allow("").label("Pincode"),
+  city: Joi.string().label("City"),
+  state: Joi.string().label("State"),
+  country: Joi.string().label("Country"),
+  pincode: Joi.string().label("Pincode"),
   orderStatus: Joi.string().valid(...ORDER_STATUS, ""),
 });
 

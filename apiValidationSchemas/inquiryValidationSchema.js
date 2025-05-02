@@ -33,10 +33,10 @@ module.exports.create = Joi.object({
 
   address: Joi.string().allow("").trim().label("Address"),
   locality: Joi.string().allow("").trim().label("Locality"),
-  city: Joi.string().allow("").trim().label("City"),
-  state: Joi.string().allow("").trim().label("State"),
-  country: Joi.string().allow("").trim().required().label("Country"),
-  pincode: Joi.string().allow("").trim().label("Pincode"),
+  city: Joi.string().required().trim().label("City"),
+  state: Joi.string().required().trim().label("State"),
+  country: Joi.string().trim().required().label("Country"),
+  pincode: Joi.string().required().trim().label("Pincode"),
 
   inquiryStatus: Joi.string().valid(...INQUIRY_STATUS),
 });
@@ -63,10 +63,10 @@ module.exports.update = Joi.object({
 
   address: Joi.string().allow("").trim().label("Address"),
   locality: Joi.string().allow("").trim().label("Locality"),
-  city: Joi.string().allow("").trim().label("City"),
-  state: Joi.string().allow("").trim().label("State"),
-  country: Joi.string().allow("").trim().required().label("Country"),
-  pincode: Joi.string().allow("").trim().label("Pincode"),
+  city: Joi.string().trim().label("City"),
+  state: Joi.string().trim().label("State"),
+  country: Joi.string().trim().required().label("Country"),
+  pincode: Joi.string().trim().label("Pincode"),
 
   inquiryStatus: Joi.string().valid(...INQUIRY_STATUS),
 });
