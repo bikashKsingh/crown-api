@@ -20,7 +20,8 @@ module.exports.create = Joi.object({
 
   inquiryType: Joi.string()
     .required()
-    .valid(...INQUIRY_TYPES),
+    .valid(...INQUIRY_TYPES)
+    .label("Interested"),
   visitorType: Joi.string().allow("").label("Visitor Type"),
   product: Joi.string().allow("").trim().label("Product"),
   category: Joi.string().allow("").trim().label("Category"),
@@ -55,7 +56,9 @@ module.exports.update = Joi.object({
 
   message: Joi.string().allow("").trim().label("Message"),
 
-  inquiryType: Joi.string().valid(...INQUIRY_TYPES),
+  inquiryType: Joi.string()
+    .valid(...INQUIRY_TYPES)
+    .label("Interested"),
   visitorType: Joi.string().allow("").label("Visitor Type"),
   product: Joi.string().allow("").trim().label("Product"),
   resumeFile: Joi.string().allow("").trim().label("Resume"),
