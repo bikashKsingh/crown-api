@@ -8,5 +8,7 @@ module.exports = {
     "PRICE",
     "SAMPLING",
     "SUPPLIER",
+    "CATALOGUE",
+    "CERTIFICATE",
   ],
 };
