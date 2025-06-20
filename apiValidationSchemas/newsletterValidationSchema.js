@@ -1,11 +1,19 @@
 const Joi = require("joi");
 const { customCallback } = require("../helpers/joiHelper");
-const { SUBSCRIPTION_STATUS } = require("../constants/newsletter");
+const {
+  SUBSCRIPTION_STATUS,
+  NEWSLETTER_TYPES,
+} = require("../constants/newsletter");
 
 // create
 module.exports.create = Joi.object({
   email: Joi.string().email().required().label("Email"),
-  subscriptionStatus: Joi.string().valid(...SUBSCRIPTION_STATUS),
+  subscriptionStatus: Joi.string()
+    .valid(...SUBSCRIPTION_STATUS, "")
+    .label("Subscription Status"),
+  newsletterType: Joi.string()
+    .valid(...NEWSLETTER_TYPES, "")
+    .label("Newsletter Type"),
 });
 
 // findAll
@@ -25,7 +33,12 @@ module.exports.findById = Joi.object({
 // update
 module.exports.update = Joi.object({
   email: Joi.string().required().label("Email"),
-  subscriptionStatus: Joi.string().valid(...SUBSCRIPTION_STATUS, ""),
+  subscriptionStatus: Joi.string()
+    .valid(...SUBSCRIPTION_STATUS, "")
+    .label("Subscription Status"),
+  newsletterType: Joi.string()
+    .valid(...NEWSLETTER_TYPES, "")
+    .label("Newsletter Type"),
 });
 
 // deleteMultiple

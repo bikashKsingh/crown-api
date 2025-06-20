@@ -1,30 +1,31 @@
 const mongoose = require("mongoose");
-const {
-  SUBSCRIPTION_STATUS,
-  NEWSLETTER_TYPES,
-} = require("../../constants/newsletter");
+const { POPUP_TYPES } = require("../../constants/popup");
 
 const modelSchema = new mongoose.Schema(
   {
-    email: {
+    title: {
       type: String,
       trim: true,
-      unique: true,
-      lowercase: true,
     },
 
-    subscriptionStatus: {
+    descriptions: {
       type: String,
-      enum: SUBSCRIPTION_STATUS,
-      default: SUBSCRIPTION_STATUS[0],
+      trim: true,
     },
 
-    newsletterType: {
+    image: {
       type: String,
-      enum: NEWSLETTER_TYPES,
-      default: NEWSLETTER_TYPES[0],
+      trim: true,
+      default: "",
     },
 
+    popupType: {
+      type: String,
+      enum: POPUP_TYPES,
+      default: POPUP_TYPES[0],
+    },
+
+    status: { type: Boolean, default: true },
     isDeleted: {
       type: Boolean,
       default: false,
@@ -42,4 +43,4 @@ const modelSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("newsletter", modelSchema);
+module.exports = mongoose.model("popup", modelSchema);

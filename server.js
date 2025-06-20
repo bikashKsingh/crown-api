@@ -59,6 +59,7 @@ app.use("/api/v1/subCategories", require("./routes/subCategoryRouter"));
 app.use("/api/v1/newsletters", require("./routes/newsLetterRouter"));
 
 app.use("/api/v1/inquiries", require("./routes/inquiryRouter"));
+app.use("/api/v1/popups", require("./routes/popupRouter"));
 
 // app.use("/api/v1/coupons", require("./routes/couponRouter"));
 // app.use("/api/v1/trainers", require("./routes/trainerRouter"));

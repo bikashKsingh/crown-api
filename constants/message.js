@@ -381,6 +381,25 @@ module.exports = {
     INVALID_ID: "Inquiry ID is invalid",
   },
 
+  popupMessage: {
+    CREATED: "Popup created!",
+    NOT_CREATED: "Failed to create inquiry.",
+
+    FETCHED: "Popup fetched!",
+    NOT_FETCHED: "Popup not fetched !",
+
+    UPDATED: "Popup updated!",
+    NOT_UPDATED: "Popup not updated !",
+
+    DELETED: "Popup deleted!",
+    NOT_DELETED: "Popup not deleted !",
+
+    ALREADY_EXISTS: "Popup already exists !",
+    NOT_AVAILABLE: "Popup not available !",
+
+    INVALID_ID: "Popup ID is invalid",
+  },
+
   documentFormatMessage: {
     CREATED: "Document format created!",
     NOT_CREATED: "Failed to create Document format.",
